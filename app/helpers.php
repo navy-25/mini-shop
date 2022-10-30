@@ -1,16 +1,69 @@
 <?php
 
+use App\Models\Category;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Route;
 
 date_default_timezone_set('Asia/Jakarta');
 
+if (!function_exists('unFormatMoney')) {
+    function unFormatMoney($money)
+    {
+        $data = str_replace('.', '', $money);
+        return (int) $data;
+    }
+}
 if (!function_exists('activeMenu')) {
     function activeMenu($route)
     {
         return strpos(Route::current()->getName(), $route) !== false ? 'active' : '';
     }
 }
+if (!function_exists('getCategory')) {
+    function getCategory($status = '')
+    {
+        $data = Category::query();
+        $status == '' ? '' : $data = $data->where('status', $status);
+        return $data->get();
+    }
+}
+
+// ABJAD & NUMERIK
+if (!function_exists('numberFormat')) {
+    function numberFormat($number, $number_coma = 0, $sparator1 = '.', $sparator2 = ',')
+    {
+        return number_format($number, $number_coma, $sparator2, $sparator1);
+    }
+}
+if (!function_exists('sentenceCase')) {
+    function sentenceCase($text)
+    {
+        return ucwords($text);
+    }
+}
+
+if (!function_exists('lowercase')) {
+    function lowerCase($text)
+    {
+        return strtolower($text);
+    }
+}
+
+if (!function_exists('uppercase')) {
+    function upperCase($text)
+    {
+        return strtoupper($text);
+    }
+}
+
+if (!function_exists('firstCase')) {
+    function firstCase($text)
+    {
+        return ucfirst($text);
+    }
+}
+// END ABJAD & NUMERIK
+
 // IMAGE
 if (!function_exists('imageSquare')) {
     function imageSquare($file, $size)

@@ -15,6 +15,9 @@ return [
             'category' => [
                 'thumbnail' => '/uploads/category',
             ],
+            'product' => [
+                'thumbnail' => '/uploads/product',
+            ],
         ]
     ],
 ];

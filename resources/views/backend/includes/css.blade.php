@@ -13,9 +13,9 @@
     /* select */
     .select2-container .select2-selection--single {
         border-radius: 4px !important;
-        height: 47px !important;
+        height: 40px !important;
         font-size: 12px;
-        padding: 10px;
+        padding: 5px;
         padding-left: 5px !important;
         border-color: #efefef;
     }
@@ -33,9 +33,9 @@
     }
     .select2-container .select2-selection--multiple {
         border-radius: 4px !important;
-        min-height: 47px !important;
+        height: 40px !important;
         font-size: 12px !important;
-        padding: 8px;
+        padding: 5px;
         padding-left: 5px !important;
         border-color: #efefef;
     }

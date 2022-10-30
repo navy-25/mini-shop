@@ -99,7 +99,6 @@
             let thumbnail_path = "{{ route('storage.categoryThumbnail', ['filename' => ':filename']) }}";
             $('#name').val(data.name)
             $('#status').val(data.status).trigger('change')
-            console.log(data.status)
             if(data.thumbnail) {
                 $(".uploadedThumbnail").attr('src', thumbnail_path.replace(':filename', data.thumbnail));
                 $(".uploadedThumbnail").css('aspect-ratio', '3/1');

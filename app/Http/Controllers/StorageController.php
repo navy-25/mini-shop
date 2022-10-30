@@ -11,4 +11,8 @@ class StorageController extends Controller
     {
         return Storage::disk('public')->response(config('constants.path.storage.category.thumbnail') . $filename);
     }
+    public function productThumbnail($filename)
+    {
+        return Storage::disk('public')->response(config('constants.path.storage.product.thumbnail') . $filename);
+    }
 }

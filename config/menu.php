@@ -21,4 +21,9 @@ return [
         'icon' => 'list',
         'route' => 'admin.category.index',
     ],
+    [
+        'name' => 'Lihat Toko',
+        'icon' => 'shopping-cart',
+        'route' => 'web.index',
+    ],
 ];

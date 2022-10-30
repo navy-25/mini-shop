@@ -19,6 +19,7 @@
                         <div class="form-group">
                             <label for="status" class="form-label required w-100">Status</label>
                             <select name="status" id="status" class="form-control select2">
+                                <option value=""></option>
                                 @foreach (statusCategory() as $key => $value)
                                     <option value="{{ $key }}">{{ $value }}</option>
                                 @endforeach

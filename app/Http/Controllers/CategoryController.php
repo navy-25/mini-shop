@@ -51,7 +51,7 @@ class CategoryController extends Controller
                     }
                     return $image;
                 })->addColumn('created_at', function ($row) {
-                    return dateFormat($row->created_at);
+                    return dateTimeFormat($row->created_at);
                 })
                 ->rawColumns(['opsi', 'thumbnail_image'])
                 ->make(true);
