@@ -26,7 +26,7 @@ class LoginController extends Controller
         } else {
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials)) {
-                return redirect()->intended(route('admin.dashboard'))->with('success', 'Login berhasil');
+                return redirect()->intended(route('admin.account.index'))->with('success', 'Login berhasil');
             }
             return redirect()->back()->with('error', 'Kata sandi salah');
         }

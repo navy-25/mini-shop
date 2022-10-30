@@ -1,10 +1,15 @@
 <?php
 
 return [
+    // [
+    //     'name' => 'Beranda',
+    //     'icon' => 'home',
+    //     'route' => 'admin.dashboard',
+    // ],
     [
-        'name' => 'Beranda',
-        'icon' => 'home',
-        'route' => 'admin.dashboard',
+        'name' => 'Akun',
+        'icon' => 'user',
+        'route' => 'admin.account.index',
     ],
     [
         'name' => 'Produk',
@@ -15,10 +20,5 @@ return [
         'name' => 'Kategori',
         'icon' => 'list',
         'route' => 'admin.category.index',
-    ],
-    [
-        'name' => 'Akun',
-        'icon' => 'user',
-        'route' => 'admin.account.index',
     ],
 ];

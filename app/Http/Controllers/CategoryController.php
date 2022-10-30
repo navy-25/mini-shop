@@ -118,9 +118,9 @@ class CategoryController extends Controller
                 $data->thumbnail = $filename;
                 $data->save();
             }
-            return redirect()->back()->with(['success', 'Berhasil menambahkan kategori baru']);
+            return redirect()->back()->with('success', 'Berhasil menambahkan kategori baru');
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['error', 'Gagal menambahkan kategori baru']);
+            return redirect()->back()->with('error', 'Gagal menambahkan kategori baru');
         }
     }
 
@@ -197,9 +197,9 @@ class CategoryController extends Controller
                 $data->thumbnail = $filename;
                 $data->save();
             }
-            return redirect()->back()->with(['success', 'Berhasil memperbarui kategori']);
+            return redirect()->back()->with('success', 'Berhasil memperbarui kategori');
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['error', 'Gagal memperbarui kategori']);
+            return redirect()->back()->with('error', 'Gagal memperbarui kategori');
         }
     }
 
@@ -216,6 +216,6 @@ class CategoryController extends Controller
 
         Storage::disk('public')->delete($path . $data->thumbnail);
         $data->delete();
-        return redirect()->back()->with(['success', 'Berhasil menghapus kategori']);
+        return redirect()->back()->with('success', 'Berhasil menghapus kategori');
     }
 }

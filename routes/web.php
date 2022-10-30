@@ -29,6 +29,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
 
     Route::controller(AccountController::class)->prefix('account')->name('account.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::post('/{id}/update', 'update')->name('update');
     });
     Route::controller(CategoryController::class)->prefix('category')->name('category.')->group(function () {
         Route::get('/', 'index')->name('index');
