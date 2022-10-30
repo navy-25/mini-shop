@@ -1,0 +1,91 @@
+<?php
+
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Route;
+
+date_default_timezone_set('Asia/Jakarta');
+
+if (!function_exists('activeMenu')) {
+    function activeMenu($route)
+    {
+        return strpos(Route::current()->getName(), $route) !== false ? 'active' : '';
+    }
+}
+// IMAGE
+if (!function_exists('imageSquare')) {
+    function imageSquare($file, $size)
+    {
+        // CROP IMAGE CENTER WITH DIMENTION 1:1
+        $file = Image::make($file->getRealPath())->fit($size)->encode($file->getClientOriginalExtension(), 100);
+        return $file;
+    }
+}
+if (!function_exists('imageConvert')) {
+    function imageConvert($file, $size_height, $size_width = 0)
+    {
+        if ($size_width == 0) {
+            // REAL DIMENTION SIZE (NO CROP)
+            $file = Image::make($file->getRealPath())
+                ->resize($size_height, $size_height, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->encode($file->getClientOriginalExtension(), 100);
+            return $file;
+        } else {
+            // CROP IMAGE WITH NEW SIZE & DIMENTION (CUSTOM)
+            $file = Image::make($file->getRealPath())
+                ->fit($size_height, $size_width, function ($constraint) {
+                    $constraint->upsize();
+                })->encode($file->getClientOriginalExtension(), 100);
+            return $file;
+        }
+    }
+}
+// END IMAGE
+
+// CUSTOM DATE
+if (!function_exists('customDate')) {
+    function customDate($date, $format)
+    {
+        return date($format, strtotime($date));
+    }
+}
+
+if (!function_exists('dateFormat')) {
+    function dateFormat($date)
+    {
+        $day = date('d', strtotime($date));
+        $month = date('m', strtotime($date));
+        $year = date('Y', strtotime($date));
+        $months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        $date =  $day . ' ' . $months[(int)$month - 1] . ' ' . $year;
+        return $date;
+    }
+}
+
+if (!function_exists('dateTimeFormat')) {
+    function dateTimeFormat($date)
+    {
+        $day = date('d', strtotime($date));
+        $month = date('m', strtotime($date));
+        $year = date('Y', strtotime($date));
+        $months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        $date =  $day . ' ' . $months[(int)$month - 1] . ' ' . $year . ' ' . date('H:i', strtotime($date));
+        return $date;
+    }
+}
+
+if (!function_exists('dateFormatDay')) {
+    function dateFormatDay($date)
+    {
+        $day_name = date('D', strtotime($date));
+        $day = date('d', strtotime($date));
+        $month = date('m', strtotime($date));
+        $year = date('Y', strtotime($date));
+        $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $day_names = ['mon' => 'Minggu', 'tue' => 'Selasa', 'wed' => 'Rabu', 'thu' => 'Kamis', 'fri' => 'Jumat', 'sat' => 'Sabtu',];
+        $date =  $day_names[strtolower($day_name)] . ', ' . $day . ' ' . $months[(int)$month - 1] . ' ' . $year;
+        return $date;
+    }
+}
+// END CUSTOM DATE
