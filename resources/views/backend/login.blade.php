@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Nama toko/website anda</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
         <link href="{{ asset('app-assets/css/bootstrap.min.css') }}" rel="stylesheet">
         <script src="https://unpkg.com/feather-icons"></script>
