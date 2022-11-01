@@ -15,7 +15,7 @@ class LoginController extends Controller
         if (Auth::user() == null) {
             return view('backend.login');
         } else {
-            return redirect()->route('admin.dashboard')->with('info', 'Anda sudah login');
+            return redirect()->route('admin.account.index')->with('success', 'Anda sudah login');
         }
     }
     public function login(Request $request)
@@ -35,6 +35,6 @@ class LoginController extends Controller
     {
         Session::flush();
         Auth::logout();
-        return redirect()->route('login.form')->with('success', 'Berhasil keluar');
+        return redirect()->route('loginForm')->with('success', 'Berhasil keluar');
     }
 }

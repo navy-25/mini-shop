@@ -15,6 +15,12 @@ Route::get('/', function () {
 
 Route::controller(WebsiteController::class)->name('web.')->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/more', 'more')->name('more');
+});
+
+Route::controller(LoginController::class)->prefix('login')->group(function () {
+    Route::get('/', 'loginForm')->name('loginForm');
+    Route::post('/login', 'login')->name('login.store');
 });
 
 Route::controller(LoginController::class)->prefix('logout')->group(function () {

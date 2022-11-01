@@ -79,6 +79,9 @@
         opacity: .15;
     }
     @media only screen and (max-width: 600px) {
+        .text-category{
+            font-size: 10px !important;
+        }
         .content{
             margin-top: 12vh !important;
             min-height: 88vh !important;

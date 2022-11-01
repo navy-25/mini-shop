@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
@@ -211,6 +212,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $isNull = Product::where('category_id', $id)->count();
+        if ($isNull > 0) {
+            return redirect()->back()->with('error', 'Kategori masih dipakai');
+        }
         $path   = config('constants.path.storage.category.thumbnail');
         $data   = Category::find($id);
 
