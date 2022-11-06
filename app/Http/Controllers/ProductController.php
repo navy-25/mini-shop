@@ -21,12 +21,16 @@ class ProductController extends Controller
         $page['title'] = 'Produk';
         $data = Product::query()
             ->join('categories as c', 'c.id', 'products.category_id')
+            ->where('c.status', 1)
             ->select('products.*', 'c.name as category_name');
+
+        $request->category_id   == '' ? '' : $data = $data->where('products.category_id', $request->category_id);
+        $request->status        == '' ? '' : $data = $data->where('products.status', $request->status);
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('status_data', function ($row) {
-                    return statusProduct($row->status);
+                    return getBasicBadge($row->status);
                 })
                 ->addColumn('price_format', function ($row) {
                     return 'Rp. ' . numberFormat($row->price);
@@ -62,7 +66,7 @@ class ProductController extends Controller
                 ->addColumn('created_at', function ($row) {
                     return dateTimeFormat($row->created_at);
                 })
-                ->rawColumns(['opsi', 'thumbnail_image'])
+                ->rawColumns(['opsi', 'thumbnail_image', 'status_data'])
                 ->make(true);
         }
         return view('backend.product', compact('page'));

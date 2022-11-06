@@ -26,7 +26,7 @@
                                             <label for="category_id" class="form-label required w-100">Kategori</label>
                                             <select name="category_id" id="category_id" class="form-control select2">
                                                 <option value=""></option>
-                                                @foreach (getCategory() as $key => $value)
+                                                @foreach (getCategory(1) as $key => $value)
                                                     <option value="{{ $value->id }}">{{ $value->name }}</option>
                                                 @endforeach
                                             </select>

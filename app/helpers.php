@@ -6,6 +6,42 @@ use Illuminate\Support\Facades\Route;
 
 date_default_timezone_set('Asia/Jakarta');
 
+// BADGE
+if (!function_exists('getBasicBadge')) {
+    // for yes/no or active nonactive
+    function getBasicBadge($status = '')
+    {
+        $statusLabel    = [0 => 'danger', 1 => 'success'];
+        $valueLabel     = [0 => 'non-active', 1 => 'active'];
+        try {
+            $statusLabel[$status];
+            return '<span class="badge bg-' . $statusLabel[$status] . '">' . sentenceCase($valueLabel[$status]) . '<span>';
+        } catch (\Throwable $th) {
+            return '<span class="badge bg-light text-dark">Undifined<span>';
+        }
+    }
+}
+// END BADGE
+
+// GET MASTER
+if (!function_exists('getCategory')) {
+    function getCategory($status = '')
+    {
+        $data = Category::query()->orderBy('name', 'ASC');
+        $status == '' ? '' : $data = $data->where('status', $status);
+        return $data->get();
+    }
+}
+// END GET MASTER
+
+if (!function_exists('activeMenu')) {
+    function activeMenu($route)
+    {
+        return strpos(Route::current()->getName(), $route) !== false ? 'active' : '';
+    }
+}
+
+// ABJAD & NUMERIK
 if (!function_exists('unFormatMoney')) {
     function unFormatMoney($money)
     {
@@ -13,22 +49,6 @@ if (!function_exists('unFormatMoney')) {
         return (int) $data;
     }
 }
-if (!function_exists('activeMenu')) {
-    function activeMenu($route)
-    {
-        return strpos(Route::current()->getName(), $route) !== false ? 'active' : '';
-    }
-}
-if (!function_exists('getCategory')) {
-    function getCategory($status = '')
-    {
-        $data = Category::query();
-        $status == '' ? '' : $data = $data->where('status', $status);
-        return $data->get();
-    }
-}
-
-// ABJAD & NUMERIK
 if (!function_exists('numberFormat')) {
     function numberFormat($number, $number_coma = 0, $sparator1 = '.', $sparator2 = ',')
     {

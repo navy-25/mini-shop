@@ -16,6 +16,48 @@
             </div>
         </div>
     </div>
+    <div class="card-body py-2 px-3">
+        <form id="form_search" class="form row">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="form-group mb-3">
+                        <div class="form-group">
+                            <label for="category_id_filter" class="form-label optional w-100">Kategori</label>
+                            <select name="category_id_filter" id="category_id_filter" class="form-control select2-filter">
+                                <option value=""></option>
+                                @foreach (getCategory(1) as $key => $value)
+                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group mb-3">
+                        <div class="form-group">
+                            <label for="status_filter" class="form-label optional w-100">Status</label>
+                            <select name="status_filter" id="status_filter" class="form-control select2-filter">
+                                <option value=""></option>
+                                @foreach (statusProduct() as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-2">
+                    <div class="form-group mb-3">
+                        <div class="form-group">
+                            <label for="category_id_filter" class="form-label required w-100">Kategori</label>
+                            <button type="button" onclick="filterData('#btn_search')" id="btn_search" class="btn btn-sm btn-danger">
+                                <i data-feather="search" class="p-1" style="height: 30px !important; width: 30px !important"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="card-body py-4 px-3">
         <div class="table-responsive">
             <table class="table table table-hover table-bordered table-sm display nowrap" id="data-table" style="width: 100%">
@@ -56,6 +98,10 @@
             dropdownParent: $('#form'),
             placeholder:'Pilih salah satu',
         });
+        $(".select2-filter").select2({
+            allowClear: true,
+            placeholder:'Pilih salah satu',
+        });
         var colums_data =
             [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', className: "text-center",orderable: false, searchable: false},
@@ -69,9 +115,11 @@
                 {data: 'opsi', name: 'opsi',orderable: false, searchable: false},
             ];
 
-        let params_datatable = function(d) {};
+        let params_datatable = function(d) {
+            d.category_id   = $('#category_id_filter').val();
+            d.status        = $('#status_filter').val();
+        };
         dataTableAjax('#data-table', '{{ route('admin.product.index') }}', params_datatable, colums_data,[[7,'DESC']]);
-
         var form = $('#form'),
             accountUploadImg = $('#thumbnail-upload-img'),
             accountUploadBtn = $('#thumbnail-upload'),
@@ -94,7 +142,9 @@
                 accountUserImage.attr('src', resetImage);
             });
         }
-
+        function filterData(btn_id){
+            datatable.draw();
+        }
         function createData(url){
             $('#name').val('')
             $('#quantity').val('')

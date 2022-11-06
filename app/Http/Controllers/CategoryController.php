@@ -22,11 +22,12 @@ class CategoryController extends Controller
     {
         $page['title'] = 'Kategori';
         $data = Category::query();
+        $request->status        == '' ? '' : $data = $data->where('categories.status', $request->status);
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('status_data', function ($row) {
-                    return statusCategory($row->status);
+                    return getBasicBadge($row->status);
                 })
                 ->addColumn('opsi', function ($row) {
                     $btn    = [];
@@ -54,7 +55,7 @@ class CategoryController extends Controller
                 })->addColumn('created_at', function ($row) {
                     return dateTimeFormat($row->created_at);
                 })
-                ->rawColumns(['opsi', 'thumbnail_image'])
+                ->rawColumns(['opsi', 'thumbnail_image', 'status_data'])
                 ->make(true);
         }
         return view('backend.category', compact('page'));

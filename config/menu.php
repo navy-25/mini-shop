@@ -22,6 +22,11 @@ return [
         'route' => 'admin.category.index',
     ],
     [
+        'name' => 'Pengaturan',
+        'icon' => 'settings',
+        'route' => 'admin.setting.index',
+    ],
+    [
         'name' => 'Lihat Toko',
         'icon' => 'shopping-cart',
         'route' => 'web.index',
