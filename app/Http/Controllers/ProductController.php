@@ -128,7 +128,7 @@ class ProductController extends Controller
                 $path           = config('constants.path.storage.product.thumbnail');
 
                 // image 4x3
-                $size_width     = config('constants.image.xs');
+                $size_width     = config('constants.image.md');
                 $size_height    = ceil($size_width * 1.33);
                 // end image 4x3
 
@@ -216,7 +216,7 @@ class ProductController extends Controller
                 $path           = config('constants.path.storage.product.thumbnail');
 
                 // image 4x3
-                $size_width     = config('constants.image.xs');
+                $size_width     = config('constants.image.md');
                 $size_height    = ceil($size_width * 1.33);
                 // end image 4x3
 

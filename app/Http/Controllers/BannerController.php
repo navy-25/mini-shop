@@ -100,7 +100,7 @@ class BannerController extends Controller
                 $path           = config('constants.path.storage.banner.image');
 
                 // image 4x3
-                $size_height    = config('constants.image.sm');
+                $size_height    = config('constants.image.lg');
                 $size_width     = ceil($size_height / 3);
                 // end image 4x3
 
@@ -177,7 +177,7 @@ class BannerController extends Controller
                 $path           = config('constants.path.storage.banner.image');
 
                 // image 4x3
-                $size_height    = config('constants.image.sm');
+                $size_height    = config('constants.image.lg');
                 $size_width     = ceil($size_height / 3);
                 // end image 4x3
 
