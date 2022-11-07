@@ -1,10 +1,20 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Settings;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Route;
 
 date_default_timezone_set('Asia/Jakarta');
+
+// GET SETTING
+if (!function_exists('getSettings')) {
+    function getSettings()
+    {
+        return Settings::first();
+    }
+}
+// END GET SETTING
 
 // BADGE
 if (!function_exists('getBasicBadge')) {

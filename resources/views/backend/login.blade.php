@@ -1,9 +1,12 @@
 <!doctype html>
 <html>
+    @php
+        $info = getSettings();
+    @endphp
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Nama toko/website anda</title>
+        <title>{{ $info->name }}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
         {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
@@ -28,10 +31,19 @@
     <body>
         <div class="d-flex" style="height: 100vh">
             <div class="card m-auto">
-                <img class="mx-auto py-2 pt-4" style="max-width: 50px !important"
-                src="{{ asset('app-assets/icon/store.png') }}" alt="{{ asset('app-assets/icon/store.png') }}">
+                @if ($info->logo == '')
+                    <img
+                        class="mx-auto py-2 pt-4" style="max-width: 50px !important"
+                        src="{{ asset('app-assets/icon/store.png') }}"
+                        alt="{{ asset('app-assets/icon/store.png') }}">
+                @else
+                    <img
+                        class="mx-auto py-2 pt-4" style="max-width: 50px !important"
+                        src="{{ route('storage.settingLogo',['filename'=>$info->logo]) }}"
+                        alt="{{ $info->logo }}">
+                @endif
                 <center>
-                    <h6 class="p-0 m-0 fw-bold">Nama toko</h6>
+                    <h6 class="p-0 m-0 fw-bold">{{ $info->name }}</h6>
                 </center>
                 <div class="card-body pt-4">
                     <form method="POST" class="row" action="{{ route('login.store') }}">
@@ -57,7 +69,7 @@
                             <button type="submit" class="btn btn-danger w-100">Masuk</button>
                         </div>
                         <div class="col-12 text-center">
-                            <small style="font-size: 8px !important">Copyright 2022 Nama toko</small>
+                            <small style="font-size: 8px !important">Copyright 2022 {{ $info->name }}</small>
                         </div>
                     </form>
                 </div>

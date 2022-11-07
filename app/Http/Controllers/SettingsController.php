@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SettingsController extends Controller
 {
@@ -37,7 +38,6 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -69,9 +69,47 @@ class SettingsController extends Controller
      * @param  \App\Models\Settings  $settings
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Settings $settings)
+    public function update(Request $request, Settings $settings, $id)
     {
-        //
+        try {
+            $data = Settings::find($id);
+            $data->update([
+                'name'         => $request->name,
+                'service_time' => $request->service_time,
+                'address'      => $request->address,
+                'description'  => $request->description,
+                'keywords'     => $request->keywords,
+                'instagram'    => $request->instagram,
+                'facebook'     => $request->facebook,
+                'email'        => $request->email,
+                'whatsapp'     => $request->whatsapp,
+                'phone'        => $request->phone,
+            ]);
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $request->validate([
+                    'logo' => 'required|image|mimes:jpeg,png,jpg',
+                ]);
+                // PUT TO LOCAL IMAGE
+                $filename       = date('dmyHis') . '_logo' . '.' . $file->getClientOriginalExtension();
+                $path           = config('constants.path.storage.settings.logo');
+
+                // image 1:1
+                $size           =  config('constants.image.md');
+                // end image 1:1
+
+                $file_compress  = imageSquare($file, $size);
+
+                Storage::disk('public')->delete($path . $data->logo);
+                Storage::disk('public')->put($path .  $filename, $file_compress);
+                // END PUT TO LOCAL IMAGE
+                $data->logo = $filename;
+                $data->save();
+            }
+            return redirect()->back()->with('success', 'Berhasil memperbarui pengaturan');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Gagal memperbarui pengaturan');
+        }
     }
 
     /**

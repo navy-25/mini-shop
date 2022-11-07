@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
@@ -31,6 +32,8 @@ Route::controller(LoginController::class)->prefix('logout')->group(function () {
 Route::controller(StorageController::class)->name('storage.')->group(function () {
     Route::get('/category-thumbnail/{filename}', 'categoryThumbnail')->name('categoryThumbnail');
     Route::get('/product-thumbnail/{filename}', 'productThumbnail')->name('productThumbnail');
+    Route::get('/setting-logo/{filename}', 'settingLogo')->name('settingLogo');
+    Route::get('/banner-image/{filename}', 'bannerImage')->name('bannerImage');
 });
 
 Route::name('admin.')->middleware(['auth'])->group(function () {
@@ -39,6 +42,12 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::controller(AccountController::class)->prefix('account')->name('account.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/{id}/update', 'update')->name('update');
+    });
+    Route::controller(BannerController::class)->prefix('banner')->name('banner.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+        Route::post('/{id}/update', 'update')->name('update');
+        Route::get('/{id}/destroy', 'destroy')->name('destroy');
     });
     Route::controller(CategoryController::class)->prefix('category')->name('category.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -54,8 +63,8 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     });
     Route::controller(SettingsController::class)->prefix('setting')->name('setting.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::post('/store', 'store')->name('store');
         Route::post('/{id}/update', 'update')->name('update');
-        Route::get('/{id}/destroy', 'destroy')->name('destroy');
+        // Route::post('/store', 'store')->name('store');
+        // Route::get('/{id}/destroy', 'destroy')->name('destroy');
     });
 });

@@ -15,4 +15,12 @@ class StorageController extends Controller
     {
         return Storage::disk('public')->response(config('constants.path.storage.product.thumbnail') . $filename);
     }
+    public function settingLogo($filename)
+    {
+        return Storage::disk('public')->response(config('constants.path.storage.settings.logo') . $filename);
+    }
+    public function bannerImage($filename)
+    {
+        return Storage::disk('public')->response(config('constants.path.storage.banner.image') . $filename);
+    }
 }

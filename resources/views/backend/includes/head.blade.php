@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nama toko/website anda</title>
-<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+<title>{{ getSettings()->name }}</title>
+<link rel="icon" type="image/x-icon" href="{{ getSettings()->logo == '' ? asset('app-assets/icon/store.png') : route('storage.settingLogo',['filename'=>getSettings()->logo]) }}">
 {{-- <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/"> --}}
 <link href="{{ asset('app-assets/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('app-assets/css/dashboard.css') }}" rel="stylesheet">

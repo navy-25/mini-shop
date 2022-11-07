@@ -22,6 +22,11 @@ return [
         'route' => 'admin.category.index',
     ],
     [
+        'name' => 'Banner',
+        'icon' => 'image',
+        'route' => 'admin.banner.index',
+    ],
+    [
         'name' => 'Pengaturan',
         'icon' => 'settings',
         'route' => 'admin.setting.index',

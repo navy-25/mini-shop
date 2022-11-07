@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('email')->nullable();
             $table->string('whatsapp');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }

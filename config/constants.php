@@ -18,6 +18,12 @@ return [
             'product' => [
                 'thumbnail' => '/uploads/product',
             ],
+            'settings' => [
+                'logo' => '/uploads/settings',
+            ],
+            'banner' => [
+                'image' => '/uploads/image',
+            ],
         ]
     ],
 ];

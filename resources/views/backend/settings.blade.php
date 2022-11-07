@@ -8,15 +8,15 @@
                 <p class="my-auto">{{ $page['title'] }}</p>
             </div>
             <div class="col-6 col-md-6 col-lg-6 d-flex">
-                <a title="tambah" href="#" onclick="$('#btn_submit').trigger('click')"
+                <button type="button" onclick="$('#btn_submit').trigger('click')"
                     class="btn-danger btn ms-auto btn-sm">
                     Simpan
-                </a>
+                </button>
             </div>
         </div>
     </div>
     <div class="card-body py-4 px-3">
-        <form id="form" action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
+        <form id="form" action="{{ route('admin.setting.update',['id' => $data->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-12 col-md-6">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
-                        <label for="phone" class="form-label required">Telepon (Rumah)</label>
+                        <label for="phone" class="form-label optional">Telepon (Rumah)</label>
                         <input type="text" name="phone" id="phone" class="form-control" value="{{ $data->phone }}" placeholder="ex. 031087765">
                     </div>
                 </div>
@@ -79,29 +79,40 @@
                         <textarea name="description" class="form-control" id="description" cols="30" rows="3">{{ $data->description }}</textarea>
                     </div>
                 </div>
-                <div class="col-12 col-md-4">
+                <div class="col-12">
                     <label for="name" class="form-label optional">Logo</label>
-                    <a href="#" class="">
-                        <img src="{{ asset('app-assets/image/default-1-1.png') }}" id="thumbnail-upload-img" class="uploadedThumbnail mb-2"  alt="profile image" width="100%" style="aspect-ratio:1:1 !important" />
-                    </a>
-                    <div class="d-flex">
-                        <p class="mb-1">
-                            Tipe file:
-                            <span class="badge bg-warning text-dark" style="font-weight: normal !important">png</span>
-                        </p>
-                        <label for="thumbnail-upload" class="btn btn-sm btn-danger mb-75 ms-auto"
-                            data-bs-toggle="tooltip" data-bs-placement="top" title="unggah foto"
-                            style="font-size:10px !important">
-                            Unggah
-                        </label>
-                        <input type="file" id="thumbnail-upload" name="thumbnail" hidden accept=".png" />
+                    <div class="row">
+                        <div class="col-12 col-md-2">
+                            <a href="#" class="">
+                                @if ($data->logo == '')
+                                    <img src="{{ asset('app-assets/image/default-1-1.png') }}"
+                                        id="thumbnail-upload-img" class="uploadedThumbnail mb-2"
+                                        alt="profile image" width="100%" style="aspect-ratio:1:1 !important" />
+                                @else
+                                    <img src="{{ route('storage.settingLogo',['filename' => $data->logo]) }}"
+                                        id="thumbnail-upload-img" class="uploadedThumbnail mb-2"
+                                        alt="profile image" width="100%" style="aspect-ratio:1:1 !important" />
+                                @endif
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <p class="mb-1">
+                                Spesifikasi file: <br>
+                                <span class="badge bg-warning text-dark" style="font-weight: normal !important">png</span>
+                                <span class="badge bg-warning text-dark" style="font-weight: normal !important">1 : 1</span>
+                            </p>
+                            <label for="thumbnail-upload" class="btn btn-sm btn-danger mb-75 mt-1 ms-auto"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="unggah foto"
+                                style="font-size:10px !important">
+                                Unggah
+                            </label>
+                            <input type="file" id="thumbnail-upload" name="logo" hidden accept=".png" />
+                        </div>
                     </div>
                 </div>
             </div>
+            <button type="submit" id="btn_submit" class="btn btn-sm btn-danger d-none">Tambahkan</button>
         </form>
-    </div>
-    <div class="card-footer">
-        <button type="submit" id="btn_submit" class="btn btn-sm btn-danger">Tambahkan</button>
     </div>
 </div>
 @include('backend.modal.formCategory')

@@ -30,7 +30,11 @@
         <nav class="navbar navbar-expand-lg fixed-top bg-danger py-2">
             <div class="container py-2" style="flex-wrap: initial !important">
                 <a href="/" class="">
-                    <img class="brand-logo me-4" src="{{ asset('app-assets/icon/store.png') }}" alt="">
+                    @if(getSettings()->logo == '')
+                        <img class="brand-logo me-4" src="{{ asset('app-assets/icon/store.png') }}" alt="">
+                    @else
+                        <img class="brand-logo me-4" src="{{ route('storage.settingLogo',['filename'=>getSettings()->logo]) }}" alt="">
+                    @endif
                 </a>
                 <form action="" class="w-100">
                     <input class="form-control my-auto input-search" type="search" name="product"
@@ -72,10 +76,13 @@
                     @if (isset($_GET['product']) == false)
                         <div id="bannerCarousel" class="carousel slide" data-bs-ride="true">
                             <div class="carousel-inner">
-                                @foreach (range(1,3) as $key)
-                                    <div class="carousel-item {{ $key == 1 ? 'active' : '' }} px-2">
-                                        <img src="{{ asset('app-assets/image/web-default-3-1.png') }}"
+                                @foreach ($data['banner'] as $key => $value)
+                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }} px-2">
+                                        {{-- <img src="{{ asset('app-assets/image/web-default-3-1.png') }}"
                                             alt="{{ asset('app-assets/image/web-default-3-1.png') }}"
+                                            class="round-sm image-banner d-block w-100"> --}}
+                                        <img src="{{ route('storage.bannerImage',['filename' => $value->banner]) }}"
+                                            alt="{{ $value->banner }}"
                                             class="round-sm image-banner d-block w-100">
                                     </div>
                                 @endforeach
@@ -228,25 +235,43 @@
             <br>
             <small>
                 <b>Offline Store : </b><br>
-                Toko Sayur Malang, Lantai 2 Pasar Terpadu Dinoyo. <br><br>
+                {{ getSettings()->address }}<br><br>
 
                 <b>Jam Layanan </b><br>
-                Online 06.00 - 18.00 WIB <br><br>
+                {{ getSettings()->service_time }}<br><br>
 
                 <b>Sosial Media </b><br>
-                <div class="d-flex mt-2">
-                    <a href="#" class="ms-auto me-3 text-danger">
-                        <i data-feather="instagram"></i>
-                    </a>
-                    <a href="#" class="me-3 text-danger">
-                        <i data-feather="facebook"></i>
-                    </a>
-                    <a href="#" class="me-3 text-danger">
-                        <i data-feather="mail"></i>
-                    </a>
-                    <a href="#" class="me-auto text-danger">
-                        <i data-feather="phone-call"></i>
-                    </a>
+                <div class="mt-2">
+                    <center>
+                        <a target="_blank" href="{{ getSettings()->instagram }}" class="me-2 text-danger {{ getSettings()->instagram == '' ? 'd-none' : ''}} "> <i data-feather="instagram"></i>
+                        </a>
+                        <a target="_blank" href="{{ getSettings()->facebook }}" class="me-2 text-danger {{ getSettings()->facebook == '' ? 'd-none' : ''}} "> <i data-feather="facebook"></i>
+                        </a>
+                        <a target="_blank" href="mailto:{{ getSettings()->email }}" class="me-2 text-danger {{ getSettings()->email == '' ? 'd-none' : ''}} "> <i data-feather="mail"></i>
+                        </a>
+
+                        @php
+                            $no_wa = getSettings()->whatsapp;
+                            if($no_wa[0] == 0){
+                                $wa = explode('0',$no_wa);
+                                $new_wa = [];
+                                foreach ($wa as $key => $value) {
+                                    if($key == 0){
+                                        continue;
+                                    }else{
+                                        $new_wa[] = $value;
+                                    }
+                                }
+                                $wa = "62".implode('',$new_wa);
+                            }else{
+                                $wa = $no_wa;
+                            }
+                        @endphp
+                        <a target="_blank" href="https://wa.me/{{ $wa }}" class="me-2 text-danger {{ getSettings()->whatsapp == '' ? 'd-none' : ''}} "> <i data-feather="message-circle"></i>
+                        </a>
+                        <a target="_blank" href="{{ getSettings()->phone }}" class="me-2 text-danger {{ getSettings()->phone == '' ? 'd-none' : ''}} "> <i data-feather="phone-call"></i>
+                        </a>
+                    </center>
                 </div>
             </small>
             <br>
