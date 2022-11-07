@@ -41,26 +41,7 @@
                         placeholder="Yuk! cari kebutuhanmu disini" value="{{ isset($_GET['product']) ? $_GET['product'] : '' }}"
                         aria-label="Search">
                 </form>
-                {{-- <button onclick="showMenu()" class="ms-4 btn btn-outline-light px-3 py-2 d-flex full-round">
-                    <i data-feather="menu" id="menu" class="m-auto p-0" width="15"></i>
-                    <i data-feather="x" id="close" class="m-auto p-0 d-none" width="15"></i>
-                </button> --}}
-            </div>
         </nav>
-        {{-- <div class="bg-dropdown d-none" id="dropdown-nav">
-            <ul class="fw-bold text-white p-0 m-0" style="list-style: none !important">
-                <li class="py-3 d-flex w-100 m-0">
-                    <a href="#" class="mx-auto text-decoration-none text-white">
-                        <i class="me-2" data-feather="user"></i> Tentang Kami
-                    </a>
-                </li>
-                <li class="py-3 d-flex w-100 m-0">
-                    <a href="#" class="mx-auto text-decoration-none text-white">
-                        <i class="me-2" data-feather="book"></i> Syarat & Ketentuan
-                    </a>
-                </li>
-            </ul>
-        </div> --}}
         <div id="spinner">
             <div class="d-flex h-100 w-100">
                 <div class="loading-parrent m-auto">
@@ -78,9 +59,6 @@
                             <div class="carousel-inner">
                                 @foreach ($data['banner'] as $key => $value)
                                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }} px-2">
-                                        {{-- <img src="{{ asset('app-assets/image/web-default-3-1.png') }}"
-                                            alt="{{ asset('app-assets/image/web-default-3-1.png') }}"
-                                            class="round-sm image-banner d-block w-100"> --}}
                                         <img src="{{ route('storage.bannerImage',['filename' => $value->banner]) }}"
                                             alt="{{ $value->banner }}"
                                             class="round-sm image-banner d-block w-100">
@@ -99,62 +77,28 @@
                         <br>
                     @endif
                     <div class="px-0 px-md-2">
-                        <div id="categoryCarousel" class="carousel slide" data-bs-ride="true">
-                            <div class="carousel-inner">
-                                @for ($i = 0; $i < count($data['category']) ; $i=$i+2)
+                        <div class="slicker">
+                            @foreach ($data['category'] as $value)
+                                <div class="mx-2">
                                     @php
-                                        $data1 = $data['category'][$i];
-                                        if($data1->thumbnail == ''){
-                                            $thumbnail_1 = asset('app-assets/image/web-default-3-1.png');
+                                        if($value->thumbnail == ''){
+                                            $thumbnail = asset('app-assets/image/web-default-3-1.png');
                                         }else{
-                                            $thumbnail_1 = route('storage.categoryThumbnail',['filename' => $data1->thumbnail]);
-                                        }
-
-                                        try {
-                                            $data2 = $data['category'][$i+1];
-                                        } catch (\Throwable $th) {
-                                            $data2 = $data['category'][0];
-                                        }
-                                        if($data2->thumbnail == ''){
-                                            $thumbnail_2 = asset('app-assets/image/web-default-3-1.png');
-                                        }else{
-                                            $thumbnail_2 = route('storage.categoryThumbnail',['filename' => $data2->thumbnail]);
+                                            $thumbnail = route('storage.categoryThumbnail',['filename' => $value->thumbnail]);
                                         }
                                     @endphp
-                                    <div class="carousel-item {{ $i == 0 ? 'active' : '' }} px-2">
-                                        <div class="row">
-                                            <a href="{{ route('web.index') }}?category={{ $data1->name }}" class="col-6 text-decoration-none text-dark">
-                                                <div class="round-sm d-flex"
-                                                    style="background-image: url({{ $thumbnail_1 }});
-                                                        background-position: center;
-                                                        background-repeat: no-repeat;
-                                                        background-size: cover;
-                                                        aspect-ratio:3/1">
-                                                    <h6 class="text-category m-auto text-dark p-2 bg-warning">{{ $data1->name }}</h6>
-                                                </div>
-                                            </a>
-                                            <a href="{{ route('web.index') }}?category={{ $data2->name }}" class="col-6 text-decoration-none text-dark">
-                                                <div class="round-sm d-flex"
-                                                    style="background-image: url({{ $thumbnail_2 }});
-                                                        background-position: center;
-                                                        background-repeat: no-repeat;
-                                                        background-size: cover;
-                                                        aspect-ratio:3/1">
-                                                    <h6 class="text-category m-auto text-dark p-2 bg-warning">{{ $data2->name }}</h6>
-                                                </div>
-                                            </a>
+                                    <a href="{{ route('web.index') }}?category={{ $value->name }}" class="col-6 text-decoration-none text-dark">
+                                        <div class="round-sm d-flex"
+                                            style="background-image: url({{ $thumbnail }});
+                                                background-position: center;
+                                                background-repeat: no-repeat;
+                                                background-size: cover;
+                                                aspect-ratio:3/1">
+                                            <h6 class="text-category m-auto text-dark p-2 bg-warning">{{ $value->name }}</h6>
                                         </div>
-                                    </div>
-                                @endfor
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon me-auto btn btn-danger p-2 full-round" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon ms-auto btn btn-danger p-2 full-round" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                                    </a>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="">
