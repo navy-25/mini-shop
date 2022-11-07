@@ -116,7 +116,7 @@
                                     if(isset($_GET['category'])){
                                         $name = $_GET['category'];
                                     }else{
-                                        $name = $data['category'][0]->name;
+                                        $name = '';
                                     }
                                 }
                             @endphp
