@@ -123,9 +123,11 @@
                             <div class="{{ $desc == '' ? 'd-none' : '' }}">
                                 <small>{{ $desc }}</small><br><br>
                             </div>
-                            <p6 class="bg-danger py-2 px-4 text-white rounded">
-                                {{ $name }}
-                            </p6>
+                            @if ($name != '')
+                                <p6 class="bg-danger py-2 px-4 text-white rounded">
+                                    {{ $name }}
+                                </p6>
+                            @endif
                         </div>
                         <input type="hidden" id="total_product_list" value="{{ count($data['product']) }}">
                         <input type="hidden" id="category_name" value="{{ $name }}">
