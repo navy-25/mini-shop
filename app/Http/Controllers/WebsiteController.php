@@ -51,7 +51,7 @@ class WebsiteController extends Controller
             ->where('products.status', 1);
 
         if ($request->product == '') {
-            $product = $product->where('c.name', $request->category_name);
+            // $product = $product->where('c.name', $request->category_name);
         } else {
             $product = $product->where('products.name', 'LIKE', "%{$request->product}%");
         }
