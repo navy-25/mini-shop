@@ -108,7 +108,7 @@ class CategoryController extends Controller
                 $path           = config('constants.path.storage.category.thumbnail');
 
                 // image 4x3
-                $size_height    = config('constants.image.sm');
+                $size_height    = config('constants.image.xs');
                 $size_width     = ceil($size_height / 3);
                 // end image 4x3
 
@@ -187,7 +187,7 @@ class CategoryController extends Controller
                 $path           = config('constants.path.storage.category.thumbnail');
 
                 // image 4x3
-                $size_height    = config('constants.image.sm');
+                $size_height    = config('constants.image.xs');
                 $size_width     = ceil($size_height / 3);
                 // end image 4x3
 

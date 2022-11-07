@@ -95,7 +95,7 @@ class SettingsController extends Controller
                 $path           = config('constants.path.storage.settings.logo');
 
                 // image 1:1
-                $size           =  config('constants.image.sm');
+                $size           =  config('constants.image.xs');
                 // end image 1:1
 
                 $file_compress  = imageSquare($file, $size);
