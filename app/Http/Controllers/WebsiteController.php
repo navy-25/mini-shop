@@ -26,7 +26,7 @@ class WebsiteController extends Controller
             ->join('categories as c', 'c.id', 'products.category_id')
             ->where('products.status', 1);
         if ($request->category == '') {
-            $data['product'] = $data['product']->where('c.name', $category[0]->name);
+            // $data['product'] = $data['product']->where('c.name', $category[0]->name);
         } else {
             $data['product'] = $data['product']->where('c.name', $request->category);
         }
