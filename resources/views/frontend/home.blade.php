@@ -53,14 +53,14 @@
                                     <button
                                     type="button"
                                     style="width: 40px !important;height: 40px !important"
-                                    onclick="min('#input_`+(new_key)+`','#product_price_`+(new_key)+`',`+val.id+`,'`+val.name+`')" class="btn btn-secondary me-2 full-round ms-auto">-</button>
+                                    onclick="min('#input_`+(new_key)+`','#product_price_`+(new_key)+`',`+val.id+`,'`+val.name+`','`+val.thumbnail+`')" class="btn btn-secondary me-2 full-round ms-auto">-</button>
 
                                     <input type="text" id="input_`+(new_key)+`" class="form-control" value="0" style="width: 60px !important;height: 40px !important;text-align: center !important" readonly>
 
                                     <button
                                     type="button"
                                     style="width: 40px !important;height: 40px !important"
-                                    onclick="plus('#input_`+(new_key)+`','#product_price_`+(new_key)+`',`+val.id+`,'`+val.name+`')" class="btn btn-danger ms-2 full-round">+</button>
+                                    onclick="plus('#input_`+(new_key)+`','#product_price_`+(new_key)+`',`+val.id+`,'`+val.name+`','`+val.thumbnail+`')" class="btn btn-danger ms-2 full-round">+</button>
                                 </div>
                             </div>
                         </div>
@@ -194,10 +194,10 @@
                             <input type="hidden" id="product_price_{{ $key }}" value="{{ $val->price }}">
                             <div class="d-flex mt-3">
                                 <button
-                                type="button" style="width: 40px !important;height: 40px !important" onclick="min('#input_{{ $key }}','#product_price_{{ $key }}','{{ $val->id }}','{{ $val->name }}')" class="btn btn-secondary me-2 full-round ms-auto">-</button>
+                                type="button" style="width: 40px !important;height: 40px !important" onclick="min('#input_{{ $key }}','#product_price_{{ $key }}','{{ $val->id }}','{{ $val->name }}','{{ $val->thumbnail }}')" class="btn btn-secondary me-2 full-round ms-auto">-</button>
                                 <input type="text" id="input_{{ $key }}" class="form-control" value="0" style="width: 60px !important;text-align: center !important;height: 40px !important" readonly>
                                 <button
-                                type="button" style="width: 40px !important;height: 40px !important" onclick="plus('#input_{{ $key }}','#product_price_{{ $key }}','{{ $val->id }}','{{ $val->name }}')" class="btn btn-danger ms-2 full-round">+</button>
+                                type="button" style="width: 40px !important;height: 40px !important" onclick="plus('#input_{{ $key }}','#product_price_{{ $key }}','{{ $val->id }}','{{ $val->name }}','{{ $val->thumbnail }}')" class="btn btn-danger ms-2 full-round">+</button>
                             </div>
                         </div>
                     </div>

@@ -47,14 +47,21 @@
             $(data_card.id_input).val(data_card.quantity)
             cart([data_card.id_input,data_card.quantity,data_card.price])
             total_price += data_card.quantity*data_card.price
+
+            if(data_card.image == ''){
+                var thumbnail = "{{ asset('app-assets/image/web-default-4-3.png') }}"
+            }else{
+                var thumbnail = "{{ route('storage.productThumbnail',['filename'=>':filename']) }}".replace(':filename',data_card.image)
+            }
+
             $('#cart_list').append(`
                 <div class="col-12 px-0">
                     <hr>
                     <div class="row m-0" id="colom_`+data_card.id_input.replace('#','')+`">
                         <div class="col-4 col-md-3 col-lg-2 px-0">
                             <img class="w-100 product-image"
-                                src="{{ asset('app-assets/image/web-default-4-3.png') }}"
-                                alt="{{ asset('app-assets/image/web-default-4-3.png') }}">
+                                src="`+thumbnail+`"
+                                alt="thumbnail produk">
                         </div>
                         <div class="col-8 col-md-9 col-lg-10 px-0">
                             <div class="px-2">
@@ -73,7 +80,7 @@
 
                                 <button
                                     type="button"
-                                    onclick="min('`+data_card.id_input+`','`+data_card.id_price+`',`+key+`,'`+data_card.name+`')"
+                                    onclick="min('`+data_card.id_input+`','`+data_card.id_price+`',`+key+`,'`+data_card.name+`','`+data_card.thumbnail+`')"
                                     style="width: 40px !important;height: 40px !important"
                                     class="btn btn-secondary me-2 full-round ms-auto">
                                     -
@@ -86,7 +93,7 @@
 
                                 <button
                                     type="button"
-                                    onclick="plus('`+data_card.id_input+`','`+data_card.id_price+`',`+key+`,'`+data_card.name+`')"
+                                    onclick="plus('`+data_card.id_input+`','`+data_card.id_price+`',`+key+`,'`+data_card.name+`','`+data_card.thumbnail+`')"
                                     style="width: 40px !important;height: 40px !important"
                                     class="btn btn-danger ms-2 full-round">+</button>
                             </div>
@@ -120,7 +127,7 @@
             $('#menu').removeClass('d-none')
         }
     }
-    function min(id_input,id_price,id_product,product_name){
+    function min(id_input,id_price,id_product,product_name,image){
         var value = $(id_input).val()
         var price = $(id_price).val()
 
@@ -134,6 +141,7 @@
                 'price' : price,
                 'total' : total_price,
                 'name' : product_name,
+                'image' : image,
             }
             $(id_input).val(temp_value)
             cart([id_input,temp_value,price])
@@ -144,7 +152,7 @@
             }
         }
     }
-    function plus(id_input,id_price,id_product,product_name){
+    function plus(id_input,id_price,id_product,product_name,image){
         var value = $(id_input).val()
         var price = $(id_price).val()
         var temp_value = parseInt(value) + 1
@@ -156,6 +164,7 @@
             'price' : price,
             'total' : total_price,
             'name' : product_name,
+            'image' : image,
         }
         $(id_input).val(temp_value)
         cart([id_input,temp_value,price])
