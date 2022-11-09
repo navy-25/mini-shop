@@ -104,5 +104,24 @@
             <br>
         </footer>
         @include('frontend.includes.script')
+        @if ($message = Session::get('error'))
+            <script>
+                $.notify({message: "{{ $message }}",},
+                {
+                    type:'warning',
+                    allow_dismiss:false,
+                    newest_on_top:true ,
+                    mouse_over:true,
+                    showProgressbar:false,
+                    spacing:10,
+                    timer:2000,
+                    placement:{from:'top',align:'center'},
+                    offset:{x:30,y:120},
+                    delay:1000 ,
+                    z_index:10000,
+                    animate:{enter:'animated flash',exit:'animated swing'}
+                });
+            </script>
+        @endif
     </body>
 </html>

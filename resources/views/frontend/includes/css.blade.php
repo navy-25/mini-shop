@@ -101,6 +101,12 @@
             width: 100% !important;
             z-index: 10 !important;
         }
+        /* NOTIFY */
+        .notify-alert{
+            margin-left:15px !important;
+            margin-right:15px !important;
+        }
+        /* END NOTIFY */
     }
 
     /* SPINNER */

@@ -2,7 +2,8 @@
 
 <script src="{{ asset('app-assets/js/bootstrap.bundle.min.js') }}"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
+<script src="{{ asset('app-assets/js/bootstrap-notify.min.js') }}" ></script>
+<script src="{{ asset('app-assets/js/notify-script.js') }}" ></script>
 @yield('script')
 <script>
     feather.replace()

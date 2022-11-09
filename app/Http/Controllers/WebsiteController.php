@@ -52,6 +52,9 @@ class WebsiteController extends Controller
 
     public function storeCheckout(Request $request)
     {
+        if (isset($request->quantity) == false) {
+            return redirect()->back()->with('error', 'Oops. Kamu belum membeli apapun!');
+        }
         $phone      = $request->phone;
         $phone_code = substr((int)$phone, 0, 2);
         if ((int)$phone_code == 62) {

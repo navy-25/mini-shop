@@ -136,6 +136,12 @@
             left: 20px !important;
             right: 20px !important;
         }
+        /* NOTIFY */
+        .notify-alert{
+            margin-left:15px !important;
+            margin-right:15px !important;
+        }
+        /* END NOTIFY */
     }
     .bd-placeholder-img {
         font-size: 1.125rem;
