@@ -65,6 +65,7 @@ class WebsiteController extends Controller
         $total      = 0;
 
         $api_wa     = 'https://wa.me/send?phone=';
+        dd($api_wa . $phone_number);
         $text       = [];
         $text[]     = 'Mau Pesan dong kak!';
         $text[]     = '';
