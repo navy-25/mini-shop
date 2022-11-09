@@ -65,7 +65,7 @@ class WebsiteController extends Controller
         $total      = 0;
 
         $api_wa     = 'https://wa.me/send?phone=';
-        dd($api_wa . $phone_number);
+        // dd($api_wa . $phone_number);
         $text       = [];
         $text[]     = 'Mau Pesan dong kak!';
         $text[]     = '';
@@ -95,7 +95,8 @@ class WebsiteController extends Controller
         $text[] = 'Total Keseluruhan : *Rp. ' . numberFormat($total) . '*';
         $text[] = '----------------------------------------';
         $text[] = 'Kunjungi Toko : mini-shop.viproject.id';
-        return redirect()->away($api_wa . $phone_number . '&text=' . implode('%0A', $text));
+        return redirect()->away($api_wa . $phone_number);
+        // return redirect()->away($api_wa . $phone_number . '&text=' . implode('%0A', $text));
     }
 
     public function more(Request $request)
