@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::controller(WebsiteController::class)->name('web.')->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/checkout', 'checkout')->name('checkout');
+    Route::post('/checkout/store', 'storeCheckout')->name('checkout.store');
     Route::get('/more', 'more')->name('more');
 });
 

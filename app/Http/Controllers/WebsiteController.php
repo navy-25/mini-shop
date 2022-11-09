@@ -44,6 +44,59 @@ class WebsiteController extends Controller
         }
         return view('frontend.home', compact('data'));
     }
+
+    public function checkout(Request $request)
+    {
+        return view('frontend.checkout');
+    }
+
+    public function storeCheckout(Request $request)
+    {
+        $phone      = $request->phone;
+        $phone_code = substr((int)$phone, 0, 2);
+        if ((int)$phone_code == 62) {
+            $phone_number = $phone;
+        } else {
+            $phone_number = '62' . substr($phone, 1);
+        }
+        $id_product = $request->id_product;
+        $quantity   = $request->quantity;
+        $total_qty  = 0;
+        $total      = 0;
+
+        $api_wa     = 'https://web.whatsapp.com/send?phone=';
+        $text       = [];
+        $text[]     = 'Mau Pesan dong kak!';
+        $text[]     = '';
+        $text[]     = 'Detail Pemesan :';
+        $text[]     = '- Nama lengkap      :   *' . $request->name . '*';
+        $text[]     = '- Telepon                  :   *082132521665*';
+        $text[]     = '- Alamat Lengkap   : %0A  *' . $request->address . '*';
+        $text[]     = '- Catatan                   : %0A  ' . $request->noted;
+        $text[]     = '';
+        $text[]     = 'Detail Barang :';
+        foreach ($id_product as $key => $id_product) {
+            $product = Product::find($id_product);
+
+            $total_qty += $quantity[$key];
+            $total += $product->price * $quantity[$key];
+
+            $no = $key + 1;
+            $text[] = $no . '. ' . $product->name;
+            $text[] = '     ' . $quantity[$key] . ' @ Rp. ' . numberFormat($product->price);
+            $text[] = '     ' . '*Total Rp. ' . numberFormat($product->price * $quantity[$key]) . '*';
+            $text[] = '';
+        }
+        $text[] = '----------------------------------------';
+        $text[] = 'Detail pembelian';
+        $text[] = 'Total Barang          : *' . numberFormat(count($quantity)) . '* Jenis';
+        $text[] = 'Total Unit               : *' . numberFormat($total_qty) . '*';
+        $text[] = 'Total Keseluruhan : *Rp. ' . numberFormat($total) . '*';
+        $text[] = '----------------------------------------';
+        $text[] = 'Kunjungi Toko : mini-shop.viproject.id';
+        return redirect()->away($api_wa . $phone_number . '&text=' . implode('%0A', $text));
+    }
+
     public function more(Request $request)
     {
         $product = Product::query()
@@ -88,7 +141,6 @@ class WebsiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
