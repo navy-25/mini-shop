@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -55,7 +56,10 @@ class WebsiteController extends Controller
         if (isset($request->quantity) == false) {
             return redirect()->back()->with('error', 'Oops. Kamu belum membeli apapun!');
         }
-        $phone      = $request->phone;
+
+
+        $set        = Settings::first();
+        $phone      = $set->whatsapp;
         $phone_code = substr((int)$phone, 0, 2);
         if ((int)$phone_code == 62) {
             $phone_number = $phone;
@@ -69,13 +73,12 @@ class WebsiteController extends Controller
 
         // $api_wa     = 'https://wa.me/send?phone=';
         $api_wa     = 'https://api.whatsapp.com/send/?phone=';
-        // dd($api_wa . $phone_number);
         $text       = [];
         $text[]     = 'Mau Pesan dong kak!';
         $text[]     = '';
         $text[]     = 'Detail Pemesan :';
         $text[]     = '- Nama lengkap      :   *' . $request->name . '*';
-        $text[]     = '- Telepon                  :   *082132521665*';
+        $text[]     = '- Telepon                  :   *' . $request->phone . '*';
         $text[]     = '- Alamat Lengkap   : %0A  *' . $request->address . '*';
         $text[]     = '- Catatan                   : %0A  ' . $request->noted;
         $text[]     = '';
@@ -99,7 +102,7 @@ class WebsiteController extends Controller
         $text[] = 'Total Keseluruhan : *Rp. ' . numberFormat($total) . '*';
         $text[] = '----------------------------------------';
         $text[] = 'Kunjungi Toko : mini-shop.viproject.id';
-        // return redirect()->away($api_wa . $phone_number);
+
         return redirect()->away($api_wa . $phone_number . '&text=' . implode('%0A', $text));
     }
 
