@@ -4,7 +4,7 @@
         @include('frontend.includes.head')
     </head>
     <body>
-        <div class="position-relative">
+        <div class="position-relative" style="z-index: 999999 !important">
             @php
                 $no_wa = getSettings()->whatsapp;
                 if($no_wa[0] == 0){
