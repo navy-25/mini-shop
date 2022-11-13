@@ -25,7 +25,7 @@
             <a target="_blank"
                 href="https://wa.me/{{ $wa }}" style="right: 20px !important; bottom: 100px !important;"
                 class="position-fixed {{ getSettings()->whatsapp == '' ? 'd-none' : ''}} ">
-                <img src="{{ asset('app-assets/icon/whatsapp.png') }}" alt="" width="80px">
+                <img src="{{ asset('app-assets/icon/whatsapp.png') }}" alt="" width="60px">
             </a>
         </div>
         <nav class="navbar fixed-bottom bg-light">
