@@ -4,9 +4,33 @@
         @include('frontend.includes.head')
     </head>
     <body>
+        <div class="position-relative">
+            @php
+                $no_wa = getSettings()->whatsapp;
+                if($no_wa[0] == 0){
+                    $wa = explode('0',$no_wa);
+                    $new_wa = [];
+                    foreach ($wa as $key => $value) {
+                        if($key == 0){
+                            continue;
+                        }else{
+                            $new_wa[] = $value;
+                        }
+                    }
+                    $wa = "62".implode('',$new_wa);
+                }else{
+                    $wa = $no_wa;
+                }
+            @endphp
+            <a target="_blank"
+                href="https://wa.me/{{ $wa }}" style="right: 20px !important; bottom: 100px !important;"
+                class="position-fixed {{ getSettings()->whatsapp == '' ? 'd-none' : ''}} ">
+                <img src="{{ asset('app-assets/icon/whatsapp.png') }}" alt="" width="80px">
+            </a>
+        </div>
         <nav class="navbar fixed-bottom bg-light">
             <div class="container" style="flex-wrap: initial !important">
-                <a type="button" class="position-relative me-3">
+                <a href="{{ route('web.checkout') }}" class="position-relative me-3">
                     <i class="me-2 text-danger" data-feather="shopping-cart"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="total_product">
                         0
@@ -71,26 +95,6 @@
                         <a target="_blank" href="{{ getSettings()->facebook }}" class="me-2 text-danger {{ getSettings()->facebook == '' ? 'd-none' : ''}} "> <i data-feather="facebook"></i>
                         </a>
                         <a target="_blank" href="mailto:{{ getSettings()->email }}" class="me-2 text-danger {{ getSettings()->email == '' ? 'd-none' : ''}} "> <i data-feather="mail"></i>
-                        </a>
-
-                        @php
-                            $no_wa = getSettings()->whatsapp;
-                            if($no_wa[0] == 0){
-                                $wa = explode('0',$no_wa);
-                                $new_wa = [];
-                                foreach ($wa as $key => $value) {
-                                    if($key == 0){
-                                        continue;
-                                    }else{
-                                        $new_wa[] = $value;
-                                    }
-                                }
-                                $wa = "62".implode('',$new_wa);
-                            }else{
-                                $wa = $no_wa;
-                            }
-                        @endphp
-                        <a target="_blank" href="https://wa.me/{{ $wa }}" class="me-2 text-danger {{ getSettings()->whatsapp == '' ? 'd-none' : ''}} "> <i data-feather="message-circle"></i>
                         </a>
                         <a target="_blank" href="{{ getSettings()->phone }}" class="me-2 text-danger {{ getSettings()->phone == '' ? 'd-none' : ''}} "> <i data-feather="phone-call"></i>
                         </a>
