@@ -81,6 +81,9 @@
             <br>
             <br>
             <small>
+                <b>Tentang Toko : </b><br>
+                {{ getSettings()->description }}<br><br>
+
                 <b>Offline Store : </b><br>
                 {{ getSettings()->address }}<br><br>
 
