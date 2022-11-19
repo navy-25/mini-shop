@@ -49,7 +49,7 @@
             cart([data_card.id_input, data_card.quantity, data_card.price])
             total_price += data_card.quantity * data_card.price
 
-            if (data_card.image == '') {
+            if (data_card.image == '' || data_card.image == null) {
                 var thumbnail = "{{ asset('app-assets/image/web-default-4-3.png') }}"
             } else {
                 var thumbnail = "{{ route('storage.productThumbnail', ['filename' => ':filename']) }}".replace(

@@ -38,7 +38,7 @@
                 },
                 success: function(response) {
                     Object.entries(response).forEach(([key, val]) => {
-                        if (val.thumbnail == '') {
+                        if (val.thumbnail == '' || val.thumbnail == null) {
                             var srcThumbnail = "{{ asset('app-assets/image/default-4-3.png') }}"
                             var thumbnail = `<img loading="lazy" class="w-100 product-image"
                                     src="` + srcThumbnail + `"
@@ -130,7 +130,7 @@
                 @foreach ($data['category'] as $value)
                     <div class="mx-2">
                         @php
-                            if ($value->thumbnail == '') {
+                            if ($value->thumbnail == '' || $value->thumbnail == null) {
                                 $thumbnail = asset('app-assets/image/web-default-3-1.png');
                             } else {
                                 $thumbnail = route('storage.categoryThumbnail', ['filename' => $value->thumbnail]);
@@ -193,7 +193,7 @@
                     @foreach ($data['product'] as $key => $val)
                         <div class="row m-0">
                             <div class="col-5 col-md-3 col-lg-2">
-                                @if ($val->thumbnail == '')
+                                @if ($val->thumbnail == '' || $val->thumbnail == null)
                                     <img loading="lazy" class="w-100 product-image" title="gambar produk"
                                         src="{{ asset('app-assets/image/web-default-4-3.png') }}"
                                         alt="{{ asset('app-assets/image/web-default-4-3.png') }}">
