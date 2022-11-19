@@ -25,7 +25,8 @@ class WebsiteController extends Controller
         $data['total_show'] = 10;
         $data['product']    = Product::query()
             ->join('categories as c', 'c.id', 'products.category_id')
-            ->where('products.status', 1);
+            ->where('products.status', 1)
+            ->where('c.status', 1);
         if ($request->category == '') {
             // $data['product'] = $data['product']->where('c.name', $category[0]->name);
         } else {
@@ -110,7 +111,8 @@ class WebsiteController extends Controller
     {
         $product = Product::query()
             ->join('categories as c', 'c.id', 'products.category_id')
-            ->where('products.status', 1);
+            ->where('products.status', 1)
+            ->where('c.status', 1);
 
         if ($request->product == '') {
             // $product = $product->where('c.name', $request->category_name);
