@@ -1,4 +1,7 @@
 @extends('layouts.web')
+@section('title')
+    Daftar Belanjaan
+@endsection
 @section('nav_bottom_btn')
     <button type="button" onclick="$('#btn_submit').trigger('click')"
         class="my-auto ms-auto btn btn-success d-flex full-round px-4">

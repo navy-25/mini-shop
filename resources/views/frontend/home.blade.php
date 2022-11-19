@@ -1,4 +1,8 @@
 @extends('layouts.web')
+
+@section('title')
+    Halaman Utama
+@endsection
 @section('nav_bottom_btn')
     <a href="{{ route('web.checkout') }}" class="ms-auto btn btn-danger full-round px-4 my-auto">
         <small>Lanjut</small>
@@ -96,14 +100,15 @@
                 <div class="carousel-inner">
                     @if (count($data['banner']) == 0)
                         <div class="carousel-item active px-0 px-md-2">
-                            <img src="{{ asset('app-assets/image/web-default-3-1.png') }}" alt="Default 3x1"
-                                class="round-sm image-banner d-block w-100">
+                            <img src="{{ asset('app-assets/image/web-default-3-1.png') }}" title="gambar banner"
+                                alt="Default 3x1" class="round-sm image-banner d-block w-100">
                         </div>
                     @else
                         @foreach ($data['banner'] as $key => $value)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }} px-0 px-md-2">
                                 <img src="{{ route('storage.bannerImage', ['filename' => $value->banner]) }}"
-                                    alt="{{ $value->banner }}" class="round-sm image-banner d-block w-100">
+                                    alt="{{ $value->banner }}" title="banner {{ $value->banner }}"
+                                    class="round-sm image-banner d-block w-100">
                             </div>
                         @endforeach
                     @endif
@@ -131,7 +136,7 @@
                             }
                         @endphp
                         <a href="{{ route('web.index') }}?category={{ $value->name }}"
-                            class="col-6 text-decoration-none text-dark">
+                            title="Kategori {{ $value->name }}" class="col-6 text-decoration-none text-dark">
                             <div class="round-sm d-flex"
                                 style="background-image: url({{ $thumbnail }});
                                 background-position: center;
@@ -187,11 +192,11 @@
                         <div class="row m-0">
                             <div class="col-5 col-md-3 col-lg-2">
                                 @if ($val->thumbnail == '')
-                                    <img class="w-100 product-image"
+                                    <img class="w-100 product-image" title="gambar produk"
                                         src="{{ asset('app-assets/image/web-default-4-3.png') }}"
                                         alt="{{ asset('app-assets/image/web-default-4-3.png') }}">
                                 @else
-                                    <img class="w-100 product-image"
+                                    <img class="w-100 product-image" title="gambar produk {{ $val->name }}"
                                         src="{{ route('storage.productThumbnail', ['filename' => $val->thumbnail]) }}"
                                         alt="{{ $val->thumbnail }}">
                                 @endif

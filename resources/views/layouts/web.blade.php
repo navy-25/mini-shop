@@ -24,7 +24,7 @@
                 $wa = $no_wa;
             }
         @endphp
-        <a target="_blank" href="https://wa.me/{{ $wa }}"
+        <a target="_blank" href="https://wa.me/{{ $wa }}" title="hubungi admin ({{ getSettings()->whatsapp }})"
             style="right: 20px !important; bottom: 100px !important;"
             class="position-fixed {{ getSettings()->whatsapp == '' ? 'd-none' : '' }} ">
             <img src="{{ asset('app-assets/icon/whatsapp.png') }}" alt="" width="60px">
@@ -48,7 +48,8 @@
                 </div>
             </div>
             <div class="col-2 d-flex">
-                <a href="/" class="btn btn-danger mx-auto p-3 full-round d-block d-md-none">
+                <a href="/" class="btn btn-danger mx-auto p-3 full-round d-block d-md-none"
+                    title="kembali ke beranda">
                     <i class="" data-feather="home"></i>
                 </a>
             </div>
@@ -57,13 +58,14 @@
             </div>
         </div>
     </nav>
-    <nav class="navbar navbar-expand-lg fixed-top bg-danger py-2">
-        <div class="container py-2" style="flex-wrap: initial !important">
+    <nav class="navbar navbar-expand-lg fixed-top bg-danger">
+        <div class="container" style="flex-wrap: initial !important">
             <a href="/" class="">
                 @if (getSettings()->logo == '')
-                    <img class="brand-logo me-4" src="{{ asset('app-assets/icon/store.png') }}" alt="">
+                    <img class="brand-logo me-4" style="padding: 0px !important"
+                        src="{{ asset('app-assets/icon/store.png') }}" alt="">
                 @else
-                    <img class="brand-logo me-4"
+                    <img class="brand-logo me-4" style="padding: 0px !important"
                         src="{{ route('storage.settingLogo', ['filename' => getSettings()->logo]) }}" alt="">
                 @endif
             </a>
