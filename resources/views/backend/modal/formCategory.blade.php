@@ -37,6 +37,7 @@
                                 <span class="badge bg-warning text-dark" style="font-weight: normal !important">png</span>
                                 <span class="badge bg-warning text-dark" style="font-weight: normal !important">jpg</span>
                                 <span class="badge bg-warning text-dark" style="font-weight: normal !important">jpeg</span>
+                                <span class="badge bg-warning text-dark" style="font-weight: normal !important">3x1</span>
                             </p>
                             <label for="thumbnail-upload" class="btn btn-sm btn-danger mb-75 ms-auto"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="unggah foto"
