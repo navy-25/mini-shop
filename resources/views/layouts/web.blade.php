@@ -129,13 +129,13 @@
                         </a>
                     </center>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
             @endif
         </small>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>
