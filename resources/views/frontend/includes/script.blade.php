@@ -57,59 +57,59 @@
             }
 
             $('#cart_list').append(`
-<div class="col-12 px-0">
-    <hr>
-    <div class="row m-0" id="colom_` + data_card.id_input.replace('#', '') + `">
-        <div class="col-4 col-md-3 col-lg-2 px-0">
-            <img class="w-100 product-image" src="` + thumbnail + `" alt="thumbnail produk">
-        </div>
-        <div class="col-8 col-md-9 col-lg-10 px-0">
-            <div class="px-2">
-                <h6 class="fw-bold my-0">` + data_card.name + `</h6>
-                <small class="text-danger fw-bold">Rp` + numberFormat(data_card.price) + `</small>
-                <input type="hidden" id="` + data_card.id_price.replace('#', '') + `"
-                    value="` +
+                <div class="col-12 px-0">
+                    <hr>
+                    <div class="row m-0" id="colom_` + data_card.id_input.replace('#', '') + `">
+                        <div class="col-4 col-md-3 col-lg-2 px-0">
+                            <img class="w-100 product-image" src="` + thumbnail + `" alt="thumbnail produk">
+                        </div>
+                        <div class="col-8 col-md-9 col-lg-10 px-0">
+                            <div class="px-2">
+                                <h6 class="fw-bold my-0">` + data_card.name + `</h6>
+                                <small class="text-danger fw-bold">Rp` + numberFormat(data_card.price) + `</small>
+                                <input type="hidden" id="` + data_card.id_price.replace('#', '') + `"
+                                    value="` +
                 data_card.price + `">
 
-                <input type="hidden" name="id_product[]" value="` + key + `">
-                <input type="hidden" name="quantity[]" value="` + data_card.quantity +
+                                <input type="hidden" name="id_product[]" value="` + key + `">
+                                <input type="hidden" name="quantity[]" value="` + data_card.quantity +
                 `">
-            </div>
-            <div class="d-flex mt-1 px-0 w-100">
-                <button class="btn btn-secondary me-auto m-2 my-auto bg-secondary p-0 rounded text-white" type="button"
-                    onclick="delete_product('colom_` +
+                            </div>
+                            <div class="d-flex mt-1 px-0 w-100">
+                                <button class="btn btn-secondary me-auto m-2 my-auto bg-secondary p-0 rounded text-white" type="button"
+                                    onclick="delete_product('colom_` +
                 data_card.id_input
                 .replace('#', '') + `','` + key + `')"
-                    style="width: 30px !important;height: 30px !important">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
-                        fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1 m-0 p-1">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                    </svg>
-                </button>
+                                    style="width: 30px !important;height: 30px !important">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1 m-0 p-1">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                </button>
 
-                <button type="button"
-                    onclick="min('` + data_card.id_input + `','` + data_card.id_price + `',` + key +
+                                <button type="button"
+                                    onclick="min('` + data_card.id_input + `','` + data_card.id_price + `',` + key +
                 `,'` + data_card.name + `','` + data_card.thumbnail + `')"
-                    style="width: 40px !important;height: 40px !important"
-                    class="btn btn-secondary me-2 full-round ms-auto">
-                    -
-                </button>
+                                    style="width: 40px !important;height: 40px !important"
+                                    class="btn btn-secondary me-2 full-round ms-auto">
+                                    -
+                                </button>
 
-                <input type="text" id="` + data_card.id_input.replace('#', '') + `" class="form-control"
-                    value="` + data_card.quantity + `"
-                    style="width: 60px !important;height: 40px !important;text-align: center !important" readonly>
+                                <input type="text" id="` + data_card.id_input.replace('#', '') + `" class="form-control"
+                                    value="` + data_card.quantity + `"
+                                    style="width: 60px !important;height: 40px !important;text-align: center !important" readonly>
 
-                <button type="button"
-                    onclick="plus('` + data_card.id_input + `','` + data_card.id_price + `',` + key +
+                                <button type="button"
+                                    onclick="plus('` + data_card.id_input + `','` + data_card.id_price + `',` + key +
                 `,'` + data_card.name + `','` + data_card.thumbnail + `')"
-                    style="width: 40px !important;height: 40px !important"
-                    class="btn btn-danger ms-2 full-round">+</button>
-            </div>
-        </div>
-    </div>
-</div>
-`)
+                                    style="width: 40px !important;height: 40px !important"
+                                    class="btn btn-danger ms-2 full-round">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `)
         })
 
         $('#total_product').text(total_product)
