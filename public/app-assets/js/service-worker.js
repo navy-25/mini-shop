@@ -15,6 +15,9 @@ const filesToCache = [
     "/app-assets/js/slick.min.js",
     "/app-assets/js/bootstrap-notify.min.js",
     "/app-assets/js/notify-script.js",
+
+    "/",
+    "/checkout",
 ];
 
 self.addEventListener("install", e => {
