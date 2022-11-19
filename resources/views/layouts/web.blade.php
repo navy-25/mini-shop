@@ -104,10 +104,10 @@
             <b>Jam Layanan </b><br>
             {{ getSettings()->service_time }}<br><br>
 
-            @if (getSettings()->instagram == '' &&
-                getSettings()->facebook == '' &&
-                getSettings()->email == '' &&
-                getSettings()->phone == '')
+            @if (getSettings()->instagram != '' &&
+                getSettings()->facebook != '' &&
+                getSettings()->email != '' &&
+                getSettings()->phone != '')
                 <b>Sosial Media </b><br>
                 <div class="mt-2">
                     <center>
@@ -129,13 +129,13 @@
                         </a>
                     </center>
                 </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
             @endif
         </small>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <br>
         <br>
         <br>
