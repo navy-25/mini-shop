@@ -15,33 +15,33 @@
 <script>
     feather.replace()
     $(document).ready(function() {
-        document.addEventListener("DOMContentLoaded", function() {
-            let lazyloadImages = document.querySelectorAll("img.lazy-load");
-            let lazyloadThrottleTimeout;
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     let lazyloadImages = document.querySelectorAll("img.lazy-load");
+        //     let lazyloadThrottleTimeout;
 
-            function lazyload() {
-                if (lazyloadThrottleTimeout) {
-                    clearTimeout(lazyloadThrottleTimeout);
-                }
-                lazyloadThrottleTimeout = setTimeout(function() {
-                    let scrollTop = window.pageYOffset;
-                    lazyloadImages.forEach(function(img) {
-                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
-                            img.src = img.dataset.src;
-                            img.classList.remove('lazy');
-                        }
-                    });
-                    if (lazyloadImages.length == 0) {
-                        document.removeEventListener("scroll", lazyload);
-                        window.removeEventListener("resize", lazyload);
-                        window.removeEventListener("orientationChange", lazyload);
-                    }
-                }, 20);
-            }
-            document.addEventListener("scroll", lazyload);
-            window.addEventListener("resize", lazyload);
-            window.addEventListener("orientationChange", lazyload);
-        });
+        //     function lazyload() {
+        //         if (lazyloadThrottleTimeout) {
+        //             clearTimeout(lazyloadThrottleTimeout);
+        //         }
+        //         lazyloadThrottleTimeout = setTimeout(function() {
+        //             let scrollTop = window.pageYOffset;
+        //             lazyloadImages.forEach(function(img) {
+        //                 if (img.offsetTop < (window.innerHeight + scrollTop)) {
+        //                     img.src = img.dataset.src;
+        //                     img.classList.remove('lazy');
+        //                 }
+        //             });
+        //             if (lazyloadImages.length == 0) {
+        //                 document.removeEventListener("scroll", lazyload);
+        //                 window.removeEventListener("resize", lazyload);
+        //                 window.removeEventListener("orientationChange", lazyload);
+        //             }
+        //         }, 20);
+        //     }
+        //     document.addEventListener("scroll", lazyload);
+        //     window.addEventListener("resize", lazyload);
+        //     window.addEventListener("orientationChange", lazyload);
+        // });
         $('#spinner').fadeOut();
         $('.slicker').slick({
             centerMode: true,
