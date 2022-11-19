@@ -108,7 +108,7 @@
 
     @media only screen and (max-width: 600px) {
         .text-category {
-            font-size: 10px !important;
+            font-size: 15px !important;
         }
 
         .content {

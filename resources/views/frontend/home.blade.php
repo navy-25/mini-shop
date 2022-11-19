@@ -100,13 +100,14 @@
                 <div class="carousel-inner">
                     @if (count($data['banner']) == 0)
                         <div class="carousel-item active px-0 px-md-2">
-                            <img loading="lazy" src="{{ asset('app-assets/image/web-default-3-1.png') }}" title="gambar banner"
-                                alt="Default 3x1" class="round-sm image-banner d-block w-100">
+                            <img loading="lazy" src="{{ asset('app-assets/image/web-default-3-1.png') }}"
+                                title="gambar banner" alt="Default 3x1" class="round-sm image-banner d-block w-100">
                         </div>
                     @else
                         @foreach ($data['banner'] as $key => $value)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }} px-0 px-md-2">
-                                <img loading="lazy" src="{{ route('storage.bannerImage', ['filename' => $value->banner]) }}"
+                                <img loading="lazy"
+                                    src="{{ route('storage.bannerImage', ['filename' => $value->banner]) }}"
                                     alt="{{ $value->banner }}" title="banner {{ $value->banner }}"
                                     class="round-sm image-banner d-block w-100">
                             </div>
@@ -143,7 +144,8 @@
                                 background-repeat: no-repeat;
                                 background-size: cover;
                                 aspect-ratio:3/1">
-                                <h6 class="text-category m-auto text-dark p-2 bg-warning">{{ $value->name }}</h6>
+                                <h6 class="text-category m-auto text-white fw-bold p-2">{{ $value->name }}</h6>
+                                {{-- <h6 class="text-category m-auto text-dark p-2 bg-warning">{{ $value->name }}</h6> --}}
                             </div>
                         </a>
                     </div>
@@ -196,7 +198,8 @@
                                         src="{{ asset('app-assets/image/web-default-4-3.png') }}"
                                         alt="{{ asset('app-assets/image/web-default-4-3.png') }}">
                                 @else
-                                    <img loading="lazy" class="w-100 product-image" title="gambar produk {{ $val->name }}"
+                                    <img loading="lazy" class="w-100 product-image"
+                                        title="gambar produk {{ $val->name }}"
                                         src="{{ route('storage.productThumbnail', ['filename' => $val->thumbnail]) }}"
                                         alt="{{ $val->thumbnail }}">
                                 @endif
