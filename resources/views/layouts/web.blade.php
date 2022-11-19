@@ -75,7 +75,9 @@
                     value="{{ isset($_GET['product']) ? $_GET['product'] : '' }}" aria-label="Search">
             </form>
     </nav>
-    <div id="spinner" style="z-index: 99999 !important">
+    <div id="spinner"
+        {{-- style="z-index: 99999 !important" --}}
+        >
         <div class="d-flex h-100 w-100">
             <div class="loading-parrent m-auto">
                 <div class="loading-object">
