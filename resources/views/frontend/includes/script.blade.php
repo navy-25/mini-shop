@@ -232,10 +232,9 @@
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
 
-
-    // if ("serviceWorker" in navigator) {
-    //     navigator.serviceWorker.register("{{ asset('app-assets/js/service-worker.js') }}").then(() => {
-    //         console.log("[ServiceWorker**] - Registered");
-    //     });
-    // }
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("{{ asset('app-assets/js/service-worker.js') }}").then(() => {
+            console.log("[ServiceWorker**] - Registered");
+        });
+    }
 </script>
