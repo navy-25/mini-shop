@@ -89,7 +89,7 @@
         </div>
     </div>
     <div class="d-flex">
-        <div class="content h-100-vh py-1 py-md-4 mx-auto">
+        <div class="content h-100-vh py-0 mx-auto">
             @yield('content')
         </div>
     </div>
