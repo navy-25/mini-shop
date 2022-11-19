@@ -30,25 +30,31 @@
             <img src="{{ asset('app-assets/icon/whatsapp.png') }}" alt="" width="60px">
         </a>
     </div>
-    <nav class="navbar fixed-bottom bg-light">
-        <div class="container" style="flex-wrap: initial !important">
-            <a href="{{ route('web.checkout') }}" class="position-relative me-3">
-                <i class="me-2 text-danger" data-feather="shopping-cart"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="total_product">
-                    0
-                </span>
-            </a>
-            <div class="d-flex me-auto">
-                <div class="my-auto">
-                    <p class="m-0 p-0" style="font-size: 10px !important">Total Belanja</p>
-                    <p class="fw-bold m-0 p-0" id="nominal_product" style="font-size: 13px !important">Rp. 0</p>
+    <nav class="navbar fixed-bottom bg-light px-0 mx-0">
+        <div class="row w-100 px-0 mx-auto">
+            <div class="col-5 d-flex">
+                <div class="my-auto d-flex w-100">
+                    <a href="{{ route('web.checkout') }}" class="position-relative me-3 my-auto">
+                        <i class="me-2 text-danger" data-feather="shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            id="total_product">
+                            0
+                        </span>
+                    </a>
+                    <div class="my-auto">
+                        <p class="m-0 p-0 w-100" style="font-size: 10px !important">Total Belanja</p>
+                        <p class="fw-bold m-0 p-0" id="nominal_product" style="font-size: 13px !important">Rp. 0</p>
+                    </div>
                 </div>
             </div>
-            <a href="/" class="btn btn-danger mx-auto p-3 full-round d-block d-md-none">
-                <i class="" data-feather="home"></i>
-            </a>
-            @yield('nav_bottom_btn')
+            <div class="col-2 d-flex">
+                <a href="/" class="btn btn-danger mx-auto p-3 full-round d-block d-md-none">
+                    <i class="" data-feather="home"></i>
+                </a>
+            </div>
+            <div class="col-5 d-flex px-2">
+                @yield('nav_bottom_btn')
+            </div>
         </div>
     </nav>
     <nav class="navbar navbar-expand-lg fixed-top bg-danger py-2">
