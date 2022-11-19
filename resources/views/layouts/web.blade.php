@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <div class="position-relative" style="z-index: 999999 !important">
+    <div class="position-relative" style="z-index: 99 !important">
         @php
             $no_wa = getSettings()->whatsapp;
             if ($no_wa[0] == 0) {
@@ -75,7 +75,7 @@
                     value="{{ isset($_GET['product']) ? $_GET['product'] : '' }}" aria-label="Search">
             </form>
     </nav>
-    <div id="spinner">
+    <div id="spinner" style="z-index: 99999 !important">
         <div class="d-flex h-100 w-100">
             <div class="loading-parrent m-auto">
                 <div class="loading-object">
