@@ -12,7 +12,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-12 col-md-9">
+                        <div class="col-12 col-md-8">
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-3">
+                        <div class="col-12 col-md-4">
                             <div class="mb-3">
                                 <label for="name" class="form-label optional">Thumbnail</label>
                                 <a href="#" class="">
