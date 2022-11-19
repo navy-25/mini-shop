@@ -7,7 +7,7 @@
 <script>
     feather.replace()
     $(document).ready(function() {
-        $('#spinner').fadeOut('slow');
+        $('#spinner').delay(2000).fadeOut(1000);
         $('.slicker').slick({
             centerMode: true,
             centerPadding: '60px',
