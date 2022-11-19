@@ -8,7 +8,7 @@
 <meta name="author" content="{{ getSettings()->name }}">
 {{-- open graph --}}
 <meta property="og:site_name" content="{{ getSettings()->name }} online shop" />
-<meta property=“og:title” content="@yield('title') - {{ getSettings()->name }}" />
+<meta property="og:title" content="@yield('title') - {{ getSettings()->name }}" />
 <meta property="og:description"
     content="{{ getSettings()->description }}, {{ getSettings()->service_time }}, {{ getSettings()->address }}" />
 <meta property="og:url" content="{{ request()->getHttpHost() }}" />
