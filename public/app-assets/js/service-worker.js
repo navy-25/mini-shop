@@ -3,8 +3,8 @@ const cacheName = "mini-show-pwa";
 
 // url name
 const filesToCache = [
-    // "/",
-    // "/checkout",
+    "/",
+    "/checkout",
     "/app-assets/js/feather.min.js"
 ];
 
