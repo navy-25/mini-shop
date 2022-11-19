@@ -13,5 +13,4 @@
 
 <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/slick.css') }}" />
 <link href="{{ asset('app-assets/css/bootstrap.min.css') }}" rel="stylesheet">
-
 @include('frontend.includes.css')

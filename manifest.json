@@ -1,0 +1,16 @@
+{
+    "short_name": "Mini Shop PWA",
+    "name": "Mini Shop PWA",
+    "icons": [
+        {
+            "src": "/app-assets/icon/store.png",
+            "type": "image/png",
+            "sizes": "50x50"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#222",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#c3042f"
+}
