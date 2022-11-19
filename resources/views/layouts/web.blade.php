@@ -26,11 +26,17 @@
         @endphp
         <a target="_blank" href="https://wa.me/{{ $wa }}" title="hubungi admin ({{ getSettings()->whatsapp }})"
             style="right: 20px !important; bottom: 100px !important;"
-            class="position-fixed {{ getSettings()->whatsapp == '' ? 'd-none' : '' }} ">
+            class="position-fixed d-block d-md-none {{ getSettings()->whatsapp == '' ? 'd-none' : '' }} ">
+            <img src="{{ asset('app-assets/icon/whatsapp.png') }}" alt="" width="60px">
+        </a>
+        <a target="_blank" href="https://wa.me/{{ $wa }}"
+            title="hubungi admin ({{ getSettings()->whatsapp }})"
+            style="right: 50px !important; bottom: 50px !important;"
+            class="position-fixed d-none d-md-block {{ getSettings()->whatsapp == '' ? 'd-none' : '' }} ">
             <img src="{{ asset('app-assets/icon/whatsapp.png') }}" alt="" width="60px">
         </a>
     </div>
-    <nav class="navbar fixed-bottom bg-light px-0 mx-0">
+    <nav class="navbar fixed-bottom bg-light px-0 mx-0 d-block d-md-none">
         <div class="row w-100 px-0 mx-auto">
             <div class="col-5 d-flex">
                 <div class="my-auto d-flex w-100">
@@ -59,10 +65,10 @@
         </div>
     </nav>
     <nav class="navbar navbar-expand-lg fixed-top bg-danger">
-        <div class="container" style="flex-wrap: initial !important">
+        <div class="container-fluid" style="flex-wrap: initial !important">
             <a href="/" class="">
                 @if (getSettings()->logo == '')
-                    <img class="brand-logo me-4" style="padding: 0px !important"
+                    <img class="brand-logo me-2" style="padding: 0px !important"
                         src="{{ asset('app-assets/icon/store.png') }}" alt="">
                 @else
                     <img class="brand-logo me-4" style="padding: 0px !important"
@@ -74,6 +80,13 @@
                     placeholder="Yuk! cari kebutuhanmu disini"
                     value="{{ isset($_GET['product']) ? $_GET['product'] : '' }}" aria-label="Search">
             </form>
+            <a href="{{ route('web.checkout') }}" class="position-relative mx-2 my-auto d-none d-md-block">
+                <i class="me-2 text-white" data-feather="shopping-cart"></i>
+                <span class="position-absolute top-0 start-100 text-danger translate-middle badge rounded-pill bg-light"
+                    id="total_product_top">
+                    0
+                </span>
+            </a>
     </nav>
     <div id="spinner" style="z-index: 99999 !important">
         <div class="d-flex h-100 w-100">
@@ -95,47 +108,98 @@
     </div>
     <footer class="bg-dark pt-5 px-5 text-center text-white">
         <small>
-            <b>Tentang Toko : </b><br>
-            {{ getSettings()->description }}<br><br>
+            <div class="row">
+                <div class="col-12 col-md-6 text-center text-md-start pe-0 pe-md-5">
+                    <b>Tentang Toko : </b><br>
+                    {{ getSettings()->description }}<br><br>
 
-            <b>Alamat Toko : </b><br>
-            {{ getSettings()->address }}<br><br>
+                    <b>Alamat Toko : </b><br>
+                    {{ getSettings()->address }}<br><br>
 
-            <b>Jam Layanan </b><br>
-            {{ getSettings()->service_time }}<br><br>
+                    <b>Jam Layanan </b><br>
+                    {{ getSettings()->service_time }}<br><br>
 
-            @if (getSettings()->instagram != '' &&
-                getSettings()->facebook != '' &&
-                getSettings()->email != '' &&
-                getSettings()->phone != '')
-                <b>Sosial Media </b><br>
-                <div class="mt-2">
-                    <center>
-                        <a target="_blank" href="{{ getSettings()->instagram }}"
-                            class="me-2 text-danger {{ getSettings()->instagram == '' ? 'd-none' : '' }} "> <i
-                                data-feather="instagram"></i>
-                        </a>
-                        <a target="_blank" href="{{ getSettings()->facebook }}"
-                            class="me-2 text-danger {{ getSettings()->facebook == '' ? 'd-none' : '' }} "> <i
-                                data-feather="facebook"></i>
-                        </a>
-                        <a target="_blank" href="mailto:{{ getSettings()->email }}"
-                            class="me-2 text-danger {{ getSettings()->email == '' ? 'd-none' : '' }} "> <i
-                                data-feather="mail"></i>
-                        </a>
-                        <a target="_blank" href="{{ getSettings()->phone }}"
-                            class="me-2 text-danger {{ getSettings()->phone == '' ? 'd-none' : '' }} "> <i
-                                data-feather="phone-call"></i>
-                        </a>
-                    </center>
+                    <div class="d-block d-md-none">
+                        @if (getSettings()->instagram != '' &&
+                            getSettings()->facebook != '' &&
+                            getSettings()->email != '' &&
+                            getSettings()->phone != '')
+                            <b>Sosial Media </b><br>
+                            <div class="mt-2">
+                                <center>
+                                    <a target="_blank" href="{{ getSettings()->instagram }}"
+                                        class="me-2 text-danger {{ getSettings()->instagram == '' ? 'd-none' : '' }} ">
+                                        <i data-feather="instagram"></i>
+                                    </a>
+                                    <a target="_blank" href="{{ getSettings()->facebook }}"
+                                        class="me-2 text-danger {{ getSettings()->facebook == '' ? 'd-none' : '' }} ">
+                                        <i data-feather="facebook"></i>
+                                    </a>
+                                    <a target="_blank" href="mailto:{{ getSettings()->email }}"
+                                        class="me-2 text-danger {{ getSettings()->email == '' ? 'd-none' : '' }} "> <i
+                                            data-feather="mail"></i>
+                                    </a>
+                                    <a target="_blank" href="{{ getSettings()->phone }}"
+                                        class="me-2 text-danger {{ getSettings()->phone == '' ? 'd-none' : '' }} "> <i
+                                            data-feather="phone-call"></i>
+                                    </a>
+                                </center>
+                            </div>
+                        @endif
+                    </div>
                 </div>
-            @endif
+                <div class="col-12 col-md-2 d-none d-md-block text-start">
+                    <b>Kategori : </b><br>
+                    <ul class="px-3">
+                        @foreach (getCategory(1, 4) as $value)
+                            <li class="py-1">
+                                <a class="text-decoration-none text-white" href="/?category={{ $value->name }}">
+                                    {{ $value->name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4 d-none d-md-block text-start">
+                    <div class="d-none d-md-block">
+                        @if (getSettings()->instagram != '' &&
+                            getSettings()->facebook != '' &&
+                            getSettings()->email != '' &&
+                            getSettings()->phone != '')
+                            <b>Sosial Media </b><br>
+                            <div class="mt-2">
+                                <center>
+                                    <a target="_blank" href="{{ getSettings()->instagram }}"
+                                        class="me-2 text-danger {{ getSettings()->instagram == '' ? 'd-none' : '' }} ">
+                                        <i data-feather="instagram"></i>
+                                    </a>
+                                    <a target="_blank" href="{{ getSettings()->facebook }}"
+                                        class="me-2 text-danger {{ getSettings()->facebook == '' ? 'd-none' : '' }} ">
+                                        <i data-feather="facebook"></i>
+                                    </a>
+                                    <a target="_blank" href="mailto:{{ getSettings()->email }}"
+                                        class="me-2 text-danger {{ getSettings()->email == '' ? 'd-none' : '' }} "> <i
+                                            data-feather="mail"></i>
+                                    </a>
+                                    <a target="_blank" href="{{ getSettings()->phone }}"
+                                        class="me-2 text-danger {{ getSettings()->phone == '' ? 'd-none' : '' }} "> <i
+                                            data-feather="phone-call"></i>
+                                    </a>
+                                </center>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </small>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class="d-block d-md-none">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
         <br>
     </footer>
     @include('frontend.includes.script')

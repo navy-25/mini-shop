@@ -35,10 +35,11 @@ if (!function_exists('getBasicBadge')) {
 
 // GET MASTER
 if (!function_exists('getCategory')) {
-    function getCategory($status = '')
+    function getCategory($status = '', $take = '')
     {
         $data = Category::query()->orderBy('name', 'ASC');
         $status == '' ? '' : $data = $data->where('status', $status);
+        $take == '' ? '' : $data = $data->take($take);
         return $data->get();
     }
 }

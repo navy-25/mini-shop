@@ -233,6 +233,7 @@
                         lebih banyak</button>
                 </div>
             @endif
+            <br>
         </div>
     </div>
 @endsection

@@ -32,7 +32,7 @@
 
     .input-search {
         height: 40px !important;
-        border-radius: 100px !important;
+        border-radius: 10px !important;
         padding: 10px 20px !important;
     }
 

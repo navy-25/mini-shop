@@ -113,6 +113,7 @@
         })
 
         $('#total_product').text(total_product)
+        $('#total_product_top').text(total_product)
         $('#nominal_product').text('Rp' + numberFormat(total_price))
         $('#detail_total_keseluruhan').text(': Rp' + numberFormat(total_price))
     }
@@ -196,6 +197,7 @@
         }
         total_product = Object.keys(carts).length
         $('#total_product').text(numberFormat(total_product))
+        $('#total_product_top').text(numberFormat(total_product))
         $('#nominal_product').text('Rp' + numberFormat(total_price))
         $('#detail_total_barang').text(': ' + numberFormat(total_product) + ' Jenis')
         $('#detail_total_keseluruhan').text(': Rp' + numberFormat(total_price))

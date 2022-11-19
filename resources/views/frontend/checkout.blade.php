@@ -14,9 +14,13 @@
             @csrf
             <div class="card mb-3">
                 <div class="card-body">
-                    <h6 class="p-0 m-0">
-                        Daftar belanjaan kamu
-                    </h6>
+                    <div class="d-flex">
+                        <a href="/" class="btn btn-light my-auto me-3 d-none d-md-block">
+                            < </a>
+                                <h6 class="p-0 m-0 my-auto">
+                                    Daftar belanjaan kamu
+                                </h6>
+                    </div>
                     <div class="row m-0" id="cart_list"></div>
                 </div>
             </div>
@@ -48,7 +52,6 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="d-none" id="btn_submit">simpan</button>
             <div class="card mb-3">
                 <div class="card-body">
                     <h6 class="p-0 m-0">
@@ -65,6 +68,8 @@
                     </div>
                 </div>
             </div>
+            <button type="submit" class="d-none d-md-block mb-3 btn btn-success w-100" id="btn_submit">Pesan
+                sekarang</button>
         </form>
     </div>
 @endsection
