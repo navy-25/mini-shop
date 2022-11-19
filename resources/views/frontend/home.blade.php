@@ -40,14 +40,14 @@
                     Object.entries(response).forEach(([key, val]) => {
                         if (val.thumbnail == '') {
                             var srcThumbnail = "{{ asset('app-assets/image/default-4-3.png') }}"
-                            var thumbnail = `<img class="w-100 product-image"
+                            var thumbnail = `<img class="w-100 product-image lazy-load"
                                     src="` + srcThumbnail + `"
                                     alt="` + srcThumbnail + `">`
                         } else {
                             var srcThumbnail =
                                 "{{ route('storage.productThumbnail', ['filename' => ':filename']) }}"
                                 .replaceAll(':filename', val.thumbnail)
-                            var thumbnail = `<img class="w-100 product-image"
+                            var thumbnail = `<img class="w-100 product-image lazy-load"
                                     src="` + srcThumbnail + `"
                                     alt="` + val.thumbnail + `">`
                         }
@@ -101,14 +101,14 @@
                     @if (count($data['banner']) == 0)
                         <div class="carousel-item active px-0 px-md-2">
                             <img src="{{ asset('app-assets/image/web-default-3-1.png') }}" title="gambar banner"
-                                alt="Default 3x1" class="round-sm image-banner d-block w-100">
+                                alt="Default 3x1" class="round-sm image-banner d-block w-100 lazy-load">
                         </div>
                     @else
                         @foreach ($data['banner'] as $key => $value)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }} px-0 px-md-2">
                                 <img src="{{ route('storage.bannerImage', ['filename' => $value->banner]) }}"
                                     alt="{{ $value->banner }}" title="banner {{ $value->banner }}"
-                                    class="round-sm image-banner d-block w-100">
+                                    class="round-sm image-banner d-block w-100 lazy-load">
                             </div>
                         @endforeach
                     @endif
@@ -192,11 +192,11 @@
                         <div class="row m-0">
                             <div class="col-5 col-md-3 col-lg-2">
                                 @if ($val->thumbnail == '')
-                                    <img class="w-100 product-image" title="gambar produk"
+                                    <img class="w-100 product-image lazy-load" title="gambar produk"
                                         src="{{ asset('app-assets/image/web-default-4-3.png') }}"
                                         alt="{{ asset('app-assets/image/web-default-4-3.png') }}">
                                 @else
-                                    <img class="w-100 product-image" title="gambar produk {{ $val->name }}"
+                                    <img class="w-100 product-image lazy-load" title="gambar produk {{ $val->name }}"
                                         src="{{ route('storage.productThumbnail', ['filename' => $val->thumbnail]) }}"
                                         alt="{{ $val->thumbnail }}">
                                 @endif
