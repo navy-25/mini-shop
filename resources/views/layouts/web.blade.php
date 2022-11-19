@@ -104,27 +104,32 @@
             <b>Jam Layanan </b><br>
             {{ getSettings()->service_time }}<br><br>
 
-            <b>Sosial Media </b><br>
-            <div class="mt-2">
-                <center>
-                    <a target="_blank" href="{{ getSettings()->instagram }}"
-                        class="me-2 text-danger {{ getSettings()->instagram == '' ? 'd-none' : '' }} "> <i
-                            data-feather="instagram"></i>
-                    </a>
-                    <a target="_blank" href="{{ getSettings()->facebook }}"
-                        class="me-2 text-danger {{ getSettings()->facebook == '' ? 'd-none' : '' }} "> <i
-                            data-feather="facebook"></i>
-                    </a>
-                    <a target="_blank" href="mailto:{{ getSettings()->email }}"
-                        class="me-2 text-danger {{ getSettings()->email == '' ? 'd-none' : '' }} "> <i
-                            data-feather="mail"></i>
-                    </a>
-                    <a target="_blank" href="{{ getSettings()->phone }}"
-                        class="me-2 text-danger {{ getSettings()->phone == '' ? 'd-none' : '' }} "> <i
-                            data-feather="phone-call"></i>
-                    </a>
-                </center>
-            </div>
+            @if (getSettings()->instagram == '' &&
+                getSettings()->facebook == '' &&
+                getSettings()->email == '' &&
+                getSettings()->phone == '')
+                <b>Sosial Media </b><br>
+                <div class="mt-2">
+                    <center>
+                        <a target="_blank" href="{{ getSettings()->instagram }}"
+                            class="me-2 text-danger {{ getSettings()->instagram == '' ? 'd-none' : '' }} "> <i
+                                data-feather="instagram"></i>
+                        </a>
+                        <a target="_blank" href="{{ getSettings()->facebook }}"
+                            class="me-2 text-danger {{ getSettings()->facebook == '' ? 'd-none' : '' }} "> <i
+                                data-feather="facebook"></i>
+                        </a>
+                        <a target="_blank" href="mailto:{{ getSettings()->email }}"
+                            class="me-2 text-danger {{ getSettings()->email == '' ? 'd-none' : '' }} "> <i
+                                data-feather="mail"></i>
+                        </a>
+                        <a target="_blank" href="{{ getSettings()->phone }}"
+                            class="me-2 text-danger {{ getSettings()->phone == '' ? 'd-none' : '' }} "> <i
+                                data-feather="phone-call"></i>
+                        </a>
+                    </center>
+                </div>
+            @endif
         </small>
         <br>
         <br>
