@@ -94,8 +94,6 @@
         </div>
     </div>
     <footer class="bg-dark pt-5 px-5 text-center text-white">
-        <br>
-        <br>
         <small>
             <b>Tentang Toko : </b><br>
             {{ getSettings()->description }}<br><br>
