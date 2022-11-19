@@ -3,9 +3,20 @@ const cacheName = "mini-show-pwa";
 
 // url name
 const filesToCache = [
-    "/",
-    "/checkout",
-    "/app-assets/js/feather.min.js"
+    // "/",
+    // "/checkout",
+    "/app-assets/css/poppins.css",
+    "/app-assets/css/slick.css",
+    "/app-assets/css/bootstrap.min.css",
+    "/app-assets/js/popper.min.js",
+    "/app-assets/js/bootstrap2.min.js",
+    "/app-assets/js/feather.min.js",
+
+    "/app-assets/js/jquery-3.5.1.js",
+    "/app-assets/js/bootstrap.bundle.min.js",
+    "/app-assets/js/slick.min.js",
+    "/app-assets/js/bootstrap-notify.min.js",
+    "/app-assets/js/notify-script.js",
 ];
 
 self.addEventListener("install", e => {
