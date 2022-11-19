@@ -137,8 +137,6 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
     </footer>
     @include('frontend.includes.script')
     @if ($message = Session::get('error'))
