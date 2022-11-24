@@ -144,7 +144,7 @@
                                 background-repeat: no-repeat;
                                 background-size: cover;
                                 aspect-ratio:3/1">
-                                <h6 class="text-category m-auto text-white fw-bold p-2">{{ $value->name }}</h6>
+                                <p class="text-category bg-danger m-auto fw-bold text-white rounded px-3 p-2">{{ $value->name }}</p>
                                 {{-- <h6 class="text-category m-auto text-dark p-2 bg-warning">{{ $value->name }}</h6> --}}
                             </div>
                         </a>
